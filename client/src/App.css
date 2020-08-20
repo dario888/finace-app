@@ -1,4 +1,222 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ----------------------------------------NAVBAR--------------------------------------------------- */
+
+.navbar {
+  background: gray;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 1px solid;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  transition: all .7s;
+ 
+}
+/* -----------------------BURGER------------------ */
+.burger {
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #f5f5f5;
+  background: transparent;
+  cursor: pointer;
+  z-index: 20;
+  
+}
+
+.line1, .line2, .line3{
+  width: 35px;
+  height: 3px;
+  background: #f5f5f5;
+  border-radius: 5px;
+  transition: all .4s;
+}
+
+.change .line1{
+  transform: rotate(-45deg) translate(-10px,8px);
+}
+
+.change .line2{
+  opacity: 0;
+}
+
+.change .line3{
+  transform: rotate(45deg) translate(-10px,-8px);
+}
+
+/* ----------------------------------------- */
+
+.logo{
+  padding:18px 0 ;
+  padding-left: 40px ;
+}
+
+.listNav {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  
+}
+
+.listNav li {
+  padding: 5px 10px;
+} 
+
+.listNav .navLink {
+  color: #f5f5f5;
+}
+
+/* .close {
+  transform: translateX(100%) ;
+}
+
+.show {
+  transform: translateX(0) ;
+} */
+
+
+
+/* ----------------------------------------HOME--------------------------------------------------- */
+.home {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0,.7), rgba(0,0,0, 0.3)), url('./home.jpg') no-repeat center center/cover;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  color: #f5f5f5;
+  
+}
+
+.home h1 {
+  font-size: 5rem;
+}
+
+.paragraph {
+  margin: 0 20px;
   text-align: center;
 }
 
+/* ----------------------------------------FOOTER--------------------------------------------------- */
+.footer {
+  background: gray;
+  border-bottom: white;
+  height: 100%;
+  /* padding: 20px ; */
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  font-weight: lighter;
+  background: transparent;
+  color: #f5f5f5;
+  text-align: center;
+  border-bottom: 1px solid #f5f5f5;
+  
+}
+
+#usefulLinks a {
+  display: block;
+  color: #f5f5f5;
+  padding-bottom: 5px ;
+  
+}
+
+
+.copyRight {
+  color: #f5f5f5;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+/* ----------------------------------------MEDIA QUERY--------------------------------------------------- */
+@media(min-width: 769px){
+  .burger{
+    display: none;
+  }
+
+  /* .verticalNav{
+    display: none;
+  } */
+  
+}
+
+@media(max-width: 768px){
+  .verticalNav {
+    margin-top: 0;
+    flex-flow: column nowrap;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    background: teal;
+    font-size: 22px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .close {
+    transform: translateX(100%) ;
+  }
+  
+  .show {
+    transform: translateX(0) ;
+  }
+
+  .listNav li {
+    color: #f5f5f5;
+    padding-top: 15px;
+  } 
+
+} 
+
+@media(max-width: 576px){
+  .listNav{
+    width: 100%;
+    font-size: 22px;
+  }
+
+  .listNav li {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+
+  .burger {
+    right:30px;
+  }
+
+  .home h1 {
+    text-align: center;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr
+    
+  }
+}
