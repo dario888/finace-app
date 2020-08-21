@@ -9,8 +9,24 @@ button:focus {
   outline: none;
 }
 
+input{
+  width: 80%;
+}
+
+input:focus {
+  outline: none;
+
+}
+
 a {
   text-decoration: none;
+}
+
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #464646;
+  display: block;
 }
 
 /* ----------------------------------------NAVBAR--------------------------------------------------- */
@@ -121,6 +137,117 @@ a {
   text-align: center;
 }
 
+/* ----------------------------------------BACKDROP--------------------------------------------------- */
+#backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  pointer-events: none;
+  display: none;
+}
+
+#backdrop.visible {
+  display: block;
+  pointer-events: all;
+}
+/* ----------------------------------------MODAL--------------------------------------------------- */
+.modal {
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-radius: 10px;
+  width: 60%;
+  top: 20vh;
+  left: 10%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: none;
+}
+
+.modal.visible {
+  display: block;
+  animation: fade-slide-in 0.4s ease-out forwards;
+}
+
+.modal .modalContent {
+  padding:0 0 10px 20px;
+}
+
+.modal h1 {
+  text-align: center;
+}
+
+.modal .modalActions {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btnForm {
+  margin: 0 10px;
+  padding: 8px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #f5f5f5;
+  background: blue;
+}
+
+.authBg{
+  height: 100vh;
+}
+/* ----------------------------------------BUDGET--------------------------------------------------- */
+.budgetContainer{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.leftSide, .rightSide {
+  padding-top: 100px;
+}
+
+.leftSide{
+  padding-left: 20px;
+}
+
+
+
+.budgetForm, .expenseForm {
+  width: 80%;
+  padding: 15px;
+  background: lightsalmon;
+  /* border-radius:5px; */
+  
+}
+
+.inputForms{
+  width: 80%;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
+#budgetSubmit, #expenseSubmit{
+  margin: 20px 0;
+
+}
+
+.costsContainer{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+.costsContainer p{
+  font-size: 30px;
+}
+
 /* ----------------------------------------FOOTER--------------------------------------------------- */
 .footer {
   background: gray;
@@ -153,17 +280,18 @@ a {
   text-align: center;
   padding-bottom: 15px;
 }
-
-/* ----------------------------------------MEDIA QUERY--------------------------------------------------- */
+/* ----------------------------------------MEDIA QUERY--------------------------------------------- */
+/* ----------------------------------------MEDIA QUERY--------------------------------------------- */
 @media(min-width: 769px){
   .burger{
     display: none;
   }
 
-  /* .verticalNav{
-    display: none;
-  } */
-  
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+
 }
 
 @media(max-width: 768px){
@@ -218,5 +346,26 @@ a {
     display: grid;
     grid-template-columns: 1fr
     
+  }
+
+  .modal h1 {
+    font-size: 25px;
+  }
+  
+}
+
+@media(max-width: 420px){
+  .modal h1 {
+    font-size: 20px;
+  }
+}
+
+/* ----------------------------------------ANIMATION--------------------------------------------- */
+@keyframes fade-slide-in {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0);
   }
 }

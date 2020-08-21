@@ -24,10 +24,10 @@ const Navbar = () => {
             </button>
             <ul className={`listNav ${open && 'verticalNav'} ${verNav}`}>
                 <li><a href="/" className="navLink">Home</a></li>
-                <li><a href="/" className="navLink">Budget</a></li>
-                <li><a href="/" className="navLink">Salary</a></li>
-                <li><a href="/" className="navLink">Log In</a></li>
-                <li><a href="/" className="navLink">Sign Up</a></li>
+                <li><a href="/budget" className="navLink">Budget</a></li>
+                <li><a href="/salary" className="navLink">Salary</a></li>
+                <li><a href="/login" className="navLink">Log In</a></li>
+                <li><a href="/signup" className="navLink">Sign Up</a></li>
             </ul>
           
         </nav>

@@ -25,8 +25,7 @@ const Footer= () => {
                     <p>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                         Amet tenetur ut vero ea quisquam numquam expedita quod aliquid exercitationem nisi,
-                        Amet tenetur ut vero ea quisquam numquam expedita quod aliquid exercitationem nisi,
-                        quasi odio itaque deserunt unde!
+                        Amet tenetur ut vero ea quisquam numquam expedita quod aliquid 
                     </p>
                 </div>
 
