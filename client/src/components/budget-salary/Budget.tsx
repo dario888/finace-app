@@ -19,6 +19,8 @@ const Budget = () => {
     const [expensesName, setExpensesName] = useState('')
     const [amount, setAmount] = useState('')
     const [sum, setSum] = useState(0)
+    const [edit, setEdit] = useState(false)
+    const [id, setId] = useState('')
 
     useEffect(() => {
         setSum(expenses.reduce((acc, cv) => acc + parseInt(cv.amount), 0))
@@ -27,7 +29,7 @@ const Budget = () => {
     }, [expenses])
     
     // console.log(expenses )
-    // console.log(sum )
+    // console.log(id )
 
   
     const setBudgetHendler = (e: ChangeEvent<HTMLInputElement>) => setBudget(e.target.value)
@@ -44,36 +46,57 @@ const Budget = () => {
 
     const submitExpenses = (e: FormEvent<HTMLFormElement>) => { 
         e.preventDefault()
+
+        if(edit){
+            let editExpense = expenses.map((expense) => id === expense.id 
+            ? {...expense, expensesName, amount} : expense )
+
+            setEdit(false) 
+            setExpensesName('')
+            setAmount('')
+
+            return setExpenses(editExpense)
+
+        }
+
         setExpenses([...expenses, {id: v4(), expensesName, amount}])
 
         setExpensesName('')
         setAmount('')
     }
 
-    const deleteHendler = (ID: string) => {
-        let expencesFilter = expenses.filter(expence => expence.id !== ID) 
+    const deleteHendler = (Id: string) => {
+        let expencesFilter = expenses.filter(expence => expence.id !== Id) 
         setExpenses( expencesFilter );
     
     }
 
-    const editHendler = (ID: string) => {
-        let expense = expenses.find(item => item.id === ID);
+    const editHendler = (Id: string) => {
+        let expense = expenses.find(item => item.id === Id);
         let {expensesName, amount} = expense as ExpenseOBJ;
         setExpensesName(expensesName);
         setAmount(amount);
-        // setEdit(true);
-        // setId(ID);
+        setEdit(true);
+        setId(Id);
     }
     
-    const clearItems = () => setExpenses([]);
-    
-    
+    const editCancle = () => {
+        setEdit(false);
+        setExpensesName('')
+        setAmount('')
 
+    }
+
+    const clearItems = () => setExpenses([]);
+   
+    
+    
+    let height100 = expenses.length >= 3 && 'height100'
 
 
     return (
        
-        <div className="budgetContainer">
+        <div className={`budgetContainer ${height100}`}>
             <div className="leftSide">
                 <form className="budgetForm" onSubmit={submitBudget}>
                     <h3>Budget</h3>
@@ -89,15 +112,18 @@ const Budget = () => {
                     <h3>Expenses</h3>
                     <div className="formGroup">
                         <input type="text" value={expensesName} onChange={setExpensesHendler}
-                        className="inputForms" id="expInp" required/>
+                        className="inputForms" id="expInp" maxLength={13} required/>
                     </div>
                     <h3>Amount</h3>
                     <div className="formGroup">
                         <input type="number" value={amount} onChange={setAmountHendler}
                         className="inputForms" id="amtInp" required/>
                     </div>
+                    <button type="button" onClick={editCancle} className="btnForm " id="expenseSubmit">
+                        Cancel
+                    </button>
                     <button type="submit"  className="btnForm " id="expenseSubmit">
-                        Add Expenses
+                    Add Expenses
                     </button>
                 </form>
             </div>

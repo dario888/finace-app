@@ -6,8 +6,8 @@ import {ExpenseOBJ} from './Budget'
 type Budget = {
     key: string, 
     expenseO: ExpenseOBJ, 
-    deleteHendler: (ID: string) => void, 
-    editHendler: (ID: string) => void,
+    deleteHendler: (Id: string) => void, 
+    editHendler: (Id: string) => void,
    
 }
 
@@ -15,18 +15,15 @@ const BudgetListItem:FC<Budget>= ({expenseO, deleteHendler, editHendler}) => {
     const {expensesName, amount, id} = expenseO
     return (
         <li className="item">
-        <div className="info">
-            <span className="expense">{expensesName}</span>
-            <span className="amount">{amount}</span>
-        </div>
-        <div>
-            {/* <button className="editBtn" aria-label="edit buton" onClick={()=>editHendler(id)}>
-            </button> */}
-            <span><i className="fas fa-home"></i></span>
-            {/* <button className="deleteBtn" aria-label="delete buton" onClick={()=>deleteHendler(id)}>
-                
-            </button> */}
-        </div>
+            <p className="expenseSpan">{expensesName}</p>
+            <p className="amountSpan">{amount}</p>
+     
+            <button className="editBtn"  onClick={()=>editHendler(id)}>
+                <span><i className="far fa-edit"></i></span>
+            </button>
+            <button className="deleteBtn"  onClick={()=>deleteHendler(id)}>
+            <span><i className="fas fa-trash-alt"></i></span>
+            </button>
         </li>
     )
 }
