@@ -313,8 +313,22 @@ label {
 }
 
 .inputSlalary{
+  width: 600px;
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
 }
+
+.inputSlalary input{
+  width: 100%;
+}
+
+.inputSlalary p {
+  color: red;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
 .tblSalary{
   border: 1px solid;
   width: 600px;
