@@ -88,6 +88,7 @@ const Budget = () => {
     }
 
     const clearItems = () => setExpenses([]);
+    const resetBudget = () => setBudget(0);
    
     
     
@@ -104,6 +105,9 @@ const Budget = () => {
                         <input type="number" value={budget.toString()} onChange={setBudgetHendler}
                         className="inputForms" id="bgtInp" required/>
                     </div>
+                    <button type="submit" onClick={resetBudget} className="btnForm" id="budgetSubmit">
+                        Reset Budget
+                    </button>
                     <button type="submit" className="btnForm" id="budgetSubmit">
                         Add Budget
                     </button>
@@ -112,7 +116,8 @@ const Budget = () => {
                     <h3>Expenses</h3>
                     <div className="formGroup">
                         <input type="text" value={expensesName} onChange={setExpensesHendler}
-                        className="inputForms" id="expInp" maxLength={13} required/>
+                        className="inputForms" id="expInp" maxLength={13} required
+                        placeholder="Expense Name"/>
                     </div>
                     <h3>Amount</h3>
                     <div className="formGroup">

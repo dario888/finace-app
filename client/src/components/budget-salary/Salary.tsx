@@ -6,11 +6,13 @@ import React, {useState, useEffect, ChangeEvent} from 'react'
 
 const Salary = () => {
 
-    let [grossSalary, setGrossSalary] = useState(0)
+    const [inputGross, setInputGross] = useState(0)
+    const [grossSalary, setGrossSalary] = useState(0)
     const [netSalary, setNetSalary] = useState(0)
+    const [calcNetAmount, setCalcNetAmount] = useState(0)
 
-    const grossMin = 20335;
-    const netMin = 14000;
+    const grossMin = 19159;
+    const netMin = 13238;
     
     const pensionFund = 0.188;
     const healthcareIns = 0.075;
@@ -18,52 +20,84 @@ const Salary = () => {
     const injuryInsurance = 0.005;
     const totalContributions = Math.round(grossSalary * (pensionFund + healthcareIns + employmentContributions + injuryInsurance));
     const grossDecreaseByContributions = grossSalary - totalContributions;
-    const personalRelief = 8400;
-    const taxBasisPersonalIncomeTax = grossDecreaseByContributions - (grossSalary > grossMin ? personalRelief : 0);
-    const personalIncomeTax = parseInt((taxBasisPersonalIncomeTax * 0.1).toFixed());
+    const personalRelief = 8228;
+    const taxBasisPersonalIncomeTax = grossDecreaseByContributions - (grossSalary >= grossMin ? personalRelief : 0);
+    const personalIncomeTax = Math.round(taxBasisPersonalIncomeTax * 0.1);
     const totalContributionsAndTaxes = totalContributions + personalIncomeTax;
 
- 
-    
+    // netToGross = grossSalary
+    const netToGross = calcNetAmount >= netMin
+    ? Math.round( (calcNetAmount + (calcNetAmount-8228) / 0.9 * 0.1) / 0.72 )
+    : 0
+
+    const displayGross = inputGross > grossMin ? inputGross : 0
+    // console.log(displayGross) 
+
+    //Calculating salary from Gross to Net
     useEffect(()=>{
         setNetSalary(grossSalary - totalContributionsAndTaxes)
         // eslint-disable-next-line
-    },[totalContributionsAndTaxes, grossSalary])
-
-    const changeGrossHendler = (e: ChangeEvent<HTMLInputElement>) =>  !e.target.value 
-    ? setGrossSalary(0) : setGrossSalary(parseInt( e.target.value))    
-     
-
-    const changeNetHendler = (e: ChangeEvent<HTMLInputElement>) => 
-    setNetSalary(parseInt(e.target.value) )
-     
-
+    },[grossSalary, totalContributionsAndTaxes])
     
-    //console.log(grossSalary)  
+    //inputGross = grossSalary
+    useEffect(()=>{
+        setGrossSalary(displayGross)
+        // eslint-disable-next-line
+    },[displayGross])
+
+    //Calculating from Net to Gross
+    useEffect(()=>{
+        setGrossSalary(netToGross)
+        // eslint-disable-next-line
+    },[netToGross])
+   
+    
+    const changeGrossHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
+     ? setInputGross(0) : setInputGross( parseInt(e.target.value) )  
+
+     
+    const changeNetHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
+    ? setCalcNetAmount(0) : setCalcNetAmount(parseInt(e.target.value) )
+     
+    const clickResetHendler = () => {
+        setGrossSalary(0)
+        setNetSalary(0)
+        setCalcNetAmount(0)
+        setInputGross(0)
+    }
+    
+    // netToGross.toString() ||  netToGross ||
     return (
         <div className="containerSalary">
-            <div className="inputSlalary">
+            <div className="inputSalary">
                 <div>
                     <label>Gross Salary</label>
-                    <input type="number" value={grossSalary.toString()} onChange={changeGrossHendler}/>
+                    <input type="number" 
+                    value={ inputGross ? inputGross.toString() : grossSalary.toString()  } 
+                    onChange={changeGrossHendler}/>
                     {
-                        grossSalary < grossMin && <p>Please insert amount bigger then 20335</p>
+                        grossSalary < grossMin && <p>Please insert amount bigger or equal to 19160</p>
                     }
                 </div>
                 <div>
                     <label>Net Salary</label>
-                    <input type="number" value={netSalary.toString()} onChange={changeNetHendler}/>
+                    <input type="number" value={calcNetAmount ? calcNetAmount.toString() : netSalary.toString()} onChange={changeNetHendler}/>
                     {
-                        netSalary < netMin && <p>Please insert amount bigger then 14000</p>
+                        netSalary < netMin ? <p>Please insert amount bigger or equal to 13238</p> 
+                        :  null 
                     }
                 </div>
+                
+            </div>
+            <div>
+                <button className="salaryClear" onClick={clickResetHendler}>Reset Salary</button>
             </div>
             <table className="tblSalary">
                 <tbody>
                 <tr>
                     <td align="left">Gross</td>
                     <td></td>
-                    <td>{grossSalary}</td>
+                    <td>{ grossSalary }</td>
                 </tr>            
                 <tr>
                     <td align="left">Pension fund</td>
@@ -98,7 +132,7 @@ const Salary = () => {
                 <tr>
                     <td align="left">Personal Relief</td>
                     <td></td>
-                    <td>8400</td>
+                    <td>8228</td>
                 </tr>            
                 <tr>
                     <td align="left">Tax Basis for calculate Personal Income Tax</td>

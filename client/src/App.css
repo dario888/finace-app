@@ -312,21 +312,30 @@ label {
  
 }
 
-.inputSlalary{
+.inputSalary{
   width: 600px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
 }
 
-.inputSlalary input{
+.inputSalary div{
+  width: 250px;
+  height: 90px;
+}
+
+.inputSalary input{
   width: 100%;
 }
 
-.inputSlalary p {
+.inputSalary p {
   color: red;
   margin-top: 8px;
   font-size: 12px;
+}
+
+.salaryClear{
+margin-bottom: 30px;
 }
 
 .tblSalary{
