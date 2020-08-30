@@ -66,7 +66,7 @@ const Salary = () => {
         setInputGross(0)
     }
     
-    // netToGross.toString() ||  netToGross ||
+
     return (
         <div className="containerSalary">
             <div className="inputSalary">

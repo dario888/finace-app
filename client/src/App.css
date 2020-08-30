@@ -209,6 +209,7 @@ label {
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  background: #515A5A;
 }
 
 .leftSide, .rightSide {
@@ -218,7 +219,21 @@ label {
 .leftSide{
   padding-left: 20px;
 }
-/* ==============================LIST ======================*/
+/* ============================== RIGTH SIDE======================*/
+.costsContainer {
+  color: #f5f5f5;
+  
+}
+
+.title {
+  color: #B5653B  ;
+}
+
+.divList {
+  margin: 0 20px;
+  
+}
+
 .list{
   display: flex;
   flex-direction: column;
@@ -232,13 +247,10 @@ label {
   margin-bottom: 1rem; 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border: 1px solid black;
-  background: cadetblue;
+  background: #4D41A4;
+  border-radius: 10px;
 
 }
-/* .info .divButtons {
-  width:100px;
-}*/
 
 .item p {
   margin: 4px 0 0 0;
@@ -251,20 +263,35 @@ label {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: green;
+  color: #1ABC9C   ;
 }
 
 .deleteBtn{
-  color: red;
+  color: #E05113;
 }
 
-/* ====================================================*/
+.btnClear {
+  width: 70px;
+  padding: 8px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #f5f5f5;
+  margin-left: 60px;
+  background: #E05113;
+}
 
+/* ===================== LEFT SIDE ===============================*/
+.budgetForm{
+  margin-bottom: 30px;
+}
 .budgetForm, .expenseForm {
   width: 80%;
   padding: 15px;
-  background: lightsalmon;
-  /* border-radius:5px; */
+  background: rgba(0,0,0, 0.3);
+  border-radius: 10px;
+  color: #f5f5f5;
   
 }
 
@@ -278,9 +305,13 @@ label {
 
 #budgetSubmit, #expenseSubmit{
   margin: 20px 0;
+  background: #4D41A4;
 
 }
 
+#budgetReset, #expenseCancel {
+  background: #E05113;
+}
 .costsContainer{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -291,16 +322,47 @@ label {
   font-size: 30px;
 }
 
-.btnClear {
-  width: 70px;
-  padding: 8px 20px;
-  font-size: 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  color: #f5f5f5;
-  background: blue;
+
+/*--------------PROGRESS BAR------------------*/
+.bcg {
+  background: #515A5A;
+  padding-bottom: 50px ;
 }
+
+.expPer {
+  margin: 0 auto ;
+  width: 800px;
+  padding: 10px 20px;
+  color: #f5f5f5;
+  background: #515A5A;
+  border-radius: 10px;
+}
+
+.expPer h5 {
+  margin-bottom: 5px ;
+}
+
+.expPer h2 {
+  text-align: center;
+}
+
+.progress{
+  background: #E05113;
+  padding: 5px 0;
+  border-radius: 10px;
+}
+
+ .bar {
+  height: 30px;
+  text-align: center;
+  color: #f5f5f5;
+  background: #4D41A4;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+
+
 /* ----------------------------------------Salary--------------------------------------------------- */
 .containerSalary{
   height: 100%;
@@ -349,7 +411,6 @@ margin-bottom: 30px;
 .tblSalary td {
   border-bottom: 1px solid;
   padding: 12px 15px;
-
 
 }
 

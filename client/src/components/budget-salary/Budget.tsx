@@ -1,5 +1,6 @@
 import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react'
 import BudgetListItem from './BudgetListItem'
+import ExpensePercentage from  './ExpensePercentage'
 import {v4} from 'uuid';
 
 
@@ -89,15 +90,18 @@ const Budget = () => {
 
     const clearItems = () => setExpenses([]);
     const resetBudget = () => setBudget(0);
-   
+   //---------------------------------------------------------------------------------------------
+
+
     
     
-    let height100 = expenses.length >= 3 && 'height100'
+    let height100 = expenses.length && 'height100'
 
 
     return (
-       
+        <div className="bcg">
         <div className={`budgetContainer ${height100}`}>
+            {/* LEFT SIDE */}
             <div className="leftSide">
                 <form className="budgetForm" onSubmit={submitBudget}>
                     <h3>Budget</h3>
@@ -105,7 +109,7 @@ const Budget = () => {
                         <input type="number" value={budget.toString()} onChange={setBudgetHendler}
                         className="inputForms" id="bgtInp" required/>
                     </div>
-                    <button type="submit" onClick={resetBudget} className="btnForm" id="budgetSubmit">
+                    <button type="submit" onClick={resetBudget} className="btnForm" id="budgetReset">
                         Reset Budget
                     </button>
                     <button type="submit" className="btnForm" id="budgetSubmit">
@@ -124,7 +128,7 @@ const Budget = () => {
                         <input type="number" value={amount.toString()} onChange={setAmountHendler}
                         className="inputForms" id="amtInp" required/>
                     </div>
-                    <button type="button" onClick={editCancle} className="btnForm " id="expenseSubmit">
+                    <button type="button" onClick={editCancle} className="btnForm " id="expenseCancel">
                         Cancel
                     </button>
                     <button type="submit"  className="btnForm " id="expenseSubmit">
@@ -132,6 +136,7 @@ const Budget = () => {
                     </button>
                 </form>
             </div>
+            {/* RIGHT SIDE */}
             <div className="rightSide">
                 <div className="costsContainer">
                     <div className="divBudget">
@@ -150,6 +155,7 @@ const Budget = () => {
                     </div>
                 </div>
             {/* display expenses */}
+            <div className="divList">
             <ul className="list">
                 
                 {
@@ -163,6 +169,7 @@ const Budget = () => {
                     })
                 }
             </ul>
+            </div>
             {
                 expenses.length ? 
                 <button className="btnClear" onClick={clearItems}>Clear</button> 
@@ -170,6 +177,25 @@ const Budget = () => {
             }
             </div>
         </div>
+
+        {/* PROGRESS BAR */}
+        
+            <div className="expPer">
+                <h2>Expense Percentage</h2>
+                {
+                    expenses.map((expense) => {
+                    return (
+                        <ExpensePercentage key={expense.id} expenseName={expense.expensesName} 
+                        amount={expense.amount} sumAmount={sum}/>
+                    )
+
+                    })
+
+                }
+            </div>
+        </div>
+     
+        
 
        
     )
