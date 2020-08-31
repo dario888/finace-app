@@ -53,11 +53,11 @@ const Salary = () => {
    
     
     const changeGrossHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
-     ? setInputGross(0) : setInputGross( parseInt(e.target.value) )  
+     ? setInputGross(0) : setInputGross( Math.abs(parseInt(e.target.value)) )  
 
      
     const changeNetHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
-    ? setCalcNetAmount(0) : setCalcNetAmount(parseInt(e.target.value) )
+    ? setCalcNetAmount(0) : setCalcNetAmount(Math.abs(parseInt(e.target.value)) )
      
     const clickResetHendler = () => {
         setGrossSalary(0)
@@ -89,34 +89,36 @@ const Salary = () => {
                 </div>
                 
             </div>
-            <div>
-                <button className="salaryClear" onClick={clickResetHendler}>Reset Salary</button>
+            <div className="divBtnReset">
+                <button className="salaryReset btnHover" onClick={clickResetHendler}>
+                    Reset Salary
+                </button>
             </div>
             <table className="tblSalary">
                 <tbody>
                 <tr>
                     <td align="left">Gross</td>
                     <td></td>
-                    <td>{ grossSalary }</td>
+                    <td className="textOrn">{ grossSalary }</td>
                 </tr>            
                 <tr>
                     <td align="left">Pension fund</td>
-                    <td>18.80%</td>
+                    <td className="textOrn">18.80%</td>
                     <td>{Math.round(grossSalary * pensionFund)}</td>
                 </tr>            
                 <tr>
                     <td align="left">Healthcare Insurance</td>
-                    <td>7.50%</td>
+                    <td className="textOrn">7.50%</td>
                     <td>{Math.round(grossSalary * healthcareIns)}</td>
                 </tr>            
                 <tr>
                     <td align="left">Employment Contributions</td>
-                    <td>1.20%</td>
+                    <td className="textOrn">1.20%</td>
                     <td>{Math.round(grossSalary * employmentContributions)}</td>
                 </tr>            
                 <tr>
                     <td align="left">Insurance in case of injury</td>
-                    <td>0.50%</td>
+                    <td className="textOrn">0.50%</td>
                     <td>{Math.round(grossSalary * injuryInsurance)}</td>
                 </tr>            
                 <tr>
@@ -132,7 +134,7 @@ const Salary = () => {
                 <tr>
                     <td align="left">Personal Relief</td>
                     <td></td>
-                    <td>8228</td>
+                    <td className="textOrn">8228</td>
                 </tr>            
                 <tr>
                     <td align="left">Tax Basis for calculate Personal Income Tax</td>
@@ -141,7 +143,7 @@ const Salary = () => {
                 </tr>            
                 <tr>
                     <td align="left">Personal Income Tax</td>
-                    <td>10%</td>
+                    <td className="textOrn">10%</td>
                     <td>{personalIncomeTax}</td>
                 </tr>            
                 <tr>
@@ -152,7 +154,7 @@ const Salary = () => {
                 <tr>
                     <td align="left">Net Salary</td>
                     <td></td>
-                <td>{netSalary}</td>
+                <td className="textOrn">{netSalary}</td>
                 </tr>          
                 </tbody>                 
             </table>

@@ -8,7 +8,7 @@ import {v4} from 'uuid';
 export type ExpenseOBJ = {
     id: string,
     expensesName: string,
-    amount: number
+    amount: number,
 }
 
 
@@ -33,17 +33,20 @@ const Budget = () => {
     // console.log(id )
 
   
-    const setBudgetHendler = (e: ChangeEvent<HTMLInputElement>) => setBudget(parseInt(e.target.value))
+    const setBudgetHendler = (e: ChangeEvent<HTMLInputElement>) => 
+    setBudget(Math.abs(parseInt(e.target.value)))
     
     const submitBudget = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setDisplayBudget(budget)
+        // setDisplayBudget(displayBudget )
+        setDisplayBudget(displayBudget + budget)
         setBudget(0)
     }
 
     const setExpensesHendler = (e: ChangeEvent<HTMLInputElement>) => setExpensesName(e.target.value)
 
-    const setAmountHendler = (e: ChangeEvent<HTMLInputElement>) => setAmount(parseInt(e.target.value))
+    const setAmountHendler = (e: ChangeEvent<HTMLInputElement>) => 
+    setAmount(Math.abs(parseInt(e.target.value)))
 
     const submitExpenses = (e: FormEvent<HTMLFormElement>) => { 
         e.preventDefault()
@@ -89,7 +92,7 @@ const Budget = () => {
     }
 
     const clearItems = () => setExpenses([]);
-    const resetBudget = () => setBudget(0);
+    const resetBudget = () => setDisplayBudget(0);
    //---------------------------------------------------------------------------------------------
 
 
@@ -109,10 +112,10 @@ const Budget = () => {
                         <input type="number" value={budget.toString()} onChange={setBudgetHendler}
                         className="inputForms" id="bgtInp" required/>
                     </div>
-                    <button type="submit" onClick={resetBudget} className="btnForm" id="budgetReset">
+                    <button type="submit" onClick={resetBudget} className="btnHover btnForm" id="budgetReset">
                         Reset Budget
                     </button>
-                    <button type="submit" className="btnForm" id="budgetSubmit">
+                    <button type="submit" className="btnForm btnHover" id="budgetSubmit">
                         Add Budget
                     </button>
                 </form>
@@ -128,14 +131,15 @@ const Budget = () => {
                         <input type="number" value={amount.toString()} onChange={setAmountHendler}
                         className="inputForms" id="amtInp" required/>
                     </div>
-                    <button type="button" onClick={editCancle} className="btnForm " id="expenseCancel">
+                    <button type="button" onClick={editCancle} className="btnForm btnHover" id="expenseCancel">
                         Cancel
                     </button>
-                    <button type="submit"  className="btnForm " id="expenseSubmit">
+                    <button type="submit"  className="btnForm btnHover" id="expenseSubmit">
                     Add Expenses
                     </button>
                 </form>
             </div>
+
             {/* RIGHT SIDE */}
             <div className="rightSide">
                 <div className="costsContainer">
@@ -172,7 +176,7 @@ const Budget = () => {
             </div>
             {
                 expenses.length ? 
-                <button className="btnClear" onClick={clearItems}>Clear</button> 
+                <button className="btnClear btnHover" onClick={clearItems}>Clear</button> 
                 : null
             }
             </div>
