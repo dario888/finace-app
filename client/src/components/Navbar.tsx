@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import {NavLink} from 'react-router-dom'
+
 
 
 
@@ -7,15 +9,13 @@ const Navbar = () => {
     
     const change = open && 'change' 
     const verNav = open ? 'show': 'close' 
+
   
-
-
 
     return (
         <nav className="navbar">
             <div className="logo">
-                <i className="fas fa-home fa-2x"></i>
-                {/* Logo */}
+                <i className="fas fa-comment-dollar fa-3x" id="dollar"></i>
             </div>
             <button className={`burger ${change}`} onClick={() => setOpen(!open)} >
                 <div className="line1"></div>
@@ -23,11 +23,31 @@ const Navbar = () => {
                 <div className="line3"></div>
             </button>
             <ul className={`listNav ${open && 'verticalNav'} ${verNav}`}>
-                <li><a href="/" className="navLink">Home</a></li>
-                <li><a href="/budget" className="navLink">Budget</a></li>
-                <li><a href="/salary" className="navLink">Salary</a></li>
-                <li><a href="/login" className="navLink">Log In</a></li>
-                <li><a href="/signup" className="navLink">Sign Up</a></li>
+                <li>
+                    <NavLink exact to="/" activeClassName="active" className={`navLink btnNavHover `} >
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/budget" activeClassName="active" className={`navLink btnNavHover`} >
+                        Budget
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/salary" activeClassName="active" className={`navLink btnNavHover`} >
+                        Salary
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/login" activeClassName="active" className={`navLink btnNavHover`} >
+                        Log In
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink exact to="/signup" activeClassName="active" className={`navLink btnNavHover`} >
+                        Sign Up
+                    </NavLink>
+                </li>
             </ul>
           
         </nav>

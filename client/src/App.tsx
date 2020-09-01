@@ -14,11 +14,12 @@ import './App.css';
 
 
 function App() {
+  
 
   return (
     <BrowserRouter>
     <div className="app">
-      <Navbar />
+      <Navbar  />
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/budget" component={Budget} />

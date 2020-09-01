@@ -38,8 +38,8 @@ const LogIn = () => {
                     <input type="password" name='password' value={password} onChange={changeHendler} required/>
                 </div>
                 <div className="modalActions">
-                    <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm" id="cancel"/>
-                    <input type="submit" value="Submit" className="btnForm" id="sub"/>
+                    <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm btnHover" id="cancel"/>
+                    <input type="submit" value="Submit" className="btnForm btnHover" id="subLogin"/>
                 </div>
             </form>
             </div>

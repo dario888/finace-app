@@ -46,8 +46,8 @@ const SignUp = () => {
                     placeholder="enter min 6, max 12 character"/>
                 </div>
                 <div className="modalActions">
-                    <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm" id="cancel"/>
-                    <input type="submit" value="Submit" className="btnForm" id="sub"/>
+                    <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm btnHover" id="cancel"/>
+                    <input type="submit" value="Submit" className="btnForm btnHover" id="subSignUp"/>
                 </div>
             </form>
         </div>

@@ -3,7 +3,7 @@ import React from 'react'
 const Footer= () => {
     return (
         <div className="footer">
-            <div className="item" >
+            <div className="itemFooter" >
                 <div id="usefulLinks">
                 <h2>Useful Links</h2>
                     <a href="https://www.nbrm.mk/" target="_blank" rel="noopener noreferrer">

@@ -46,17 +46,31 @@ label {
   border: none;
   cursor: pointer;
   color: #f5f5f5;
-  background: blue;
+}
+
+.btnForm {
+  background: #E05113;
 }
 
 .btnHover:hover {
   border: 1px solid;
   opacity: 0.8;
 } 
+
+.btnNavHover:hover {
+  border-bottom: 2px solid #1ABC9C;
+  opacity: 0.8;
+} 
+
+.listNav .active{
+  border-bottom: 2px solid #1ABC9C;
+  color: #d3d02b;
+}
+
 /* ----------------------------------------NAVBAR--------------------------------------------------- */
 
 .navbar {
-  background: gray;
+  background: #E05113;
   width: 100%;
   height: 60px;
   position: fixed;
@@ -69,6 +83,8 @@ label {
   transition: all .7s;
  
 }
+
+
 /* -----------------------BURGER------------------ */
 .burger {
   width: 45px;
@@ -86,6 +102,15 @@ label {
   cursor: pointer;
   z-index: 20;
   
+}
+
+.logo{
+  margin-left: 40px;
+  padding: 5px 0 ;
+}
+
+#dollar {
+  color: #4D41A4;
 }
 
 .line1, .line2, .line3{
@@ -110,34 +135,21 @@ label {
 
 /* ----------------------------------------- */
 
-.logo{
-  padding:18px 0 ;
-  padding-left: 40px ;
-}
 
 .listNav {
   list-style: none;
   display: flex;
-  flex-flow: row nowrap;
-  
+  flex-flow: row nowrap; 
 }
 
 .listNav li {
   padding: 5px 10px;
+  color:  #f5f5f5 ;
 } 
 
-.listNav .navLink {
+.listNav a {
   color: #f5f5f5;
 }
-
-/* .close {
-  transform: translateX(100%) ;
-}
-
-.show {
-  transform: translateX(0) ;
-} */
-
 
 
 /* ----------------------------------------HOME--------------------------------------------------- */
@@ -182,12 +194,13 @@ label {
 .modal {
   position: fixed;
   z-index: 100;
-  background: white;
+  background: #515A5A;
   border-radius: 10px;
   width: 60%;
   top: 20vh;
   left: 10%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 3px 3px  10px #b7bbbb;
+  /* box-shadow: -3px -3px 8px #b7bbbb; */
   display: none;
 }
 
@@ -202,12 +215,33 @@ label {
 
 .modal h1 {
   text-align: center;
+  color: #b7bbbb;
+}
+
+.textPrimary {
+  color: #fa5d08;
 }
 
 .modal .modalActions {
+  height: 30px;
   padding: 1rem;
   display: flex;
   justify-content: center;
+}
+
+.modalContent label{
+  color: #f5f5f5;
+}
+
+.modalContent input{
+  color: #b7bbbb;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #1ABC9C ;
+}
+
+#subSignUp, #subLogin {
+  background: #6857ec;
 }
 
 .authBg{
@@ -258,11 +292,13 @@ label {
   grid-template-columns: repeat(4, 1fr);
   background: #4D41A4;
   border-radius: 10px;
+  border: 1px solid #f5f5f5; 
   transition: all .4s;
 }
 
 .item p {
   margin: 4px 0 0 0;
+  color: #b7bbbb;
 }
 
 .item:hover {
@@ -328,9 +364,6 @@ label {
 
 }
 
-.btnForm {
-  background: #E05113;
-}
 .costsContainer{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -456,21 +489,20 @@ label {
 
 /* ----------------------------------------FOOTER--------------------------------------------------- */
 .footer {
-  background: gray;
+  background: #4D41A4;
   border-bottom: white;
   height: 100%;
-  /* padding: 20px ; */
+  padding: 10px ;
 }
 
-.item {
+.itemFooter {
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
+  margin-bottom: 20px;
   font-weight: lighter;
   background: transparent;
   color: #f5f5f5;
   text-align: center;
-  border-bottom: 1px solid #f5f5f5;
-  
 }
 
 #usefulLinks a {
@@ -482,9 +514,11 @@ label {
 
 
 .copyRight {
+  padding-bottom: 15px;
+  margin-top: 10px;
   color: #f5f5f5;
   text-align: center;
-  padding-bottom: 15px;
+  border-top: 1px solid #f5f5f5;
 }
 
 /* ----------------------------------------MEDIA QUERY--------------------------------------------- */
@@ -512,7 +546,7 @@ label {
     right: 0;
     height: 100vh;
     width: 300px;
-    background: teal;
+    background: #B5653B;
     font-size: 22px;
     transition: transform 0.3s ease-in-out;
   }
@@ -570,11 +604,10 @@ label {
     width: 450px;
   }
 
-  
-
- 
-  /* ==========================BUDGET================================== */
-  /* ==========================BUDGET================================== */
+  /* ========================== SIGN UP & LOG IN ================================== */
+  .modal {
+    width: 80%;
+  }
 
 } 
 
@@ -633,10 +666,33 @@ label {
     padding: 10px 0;
   }
 
+  /* ==========================SALARY================================== */
 
+  .tblSalary {
+    width: 350px;
+  }
 
-  
+  .inputSalary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .divBtnReset {
+    margin-bottom: 30px;
+  }
+
+/* ==========================SIGN UP & LOG IN================================== */
+  .modal {
+    width: 80%;
+  }
+
+  /* ========================== FOOTER ================================== */
+  .itemFooter{
+    display: flex;
+    flex-direction: column;
+  }
 
 
 
