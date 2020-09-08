@@ -1,10 +1,21 @@
 const express = require('express');
+const connectDB = require('./connectDB');
+//ROUTES
 const usersRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const expensesRoutes = require('./routes/expenses');
 const budgetRoutes = require('./routes/budget');
 
+
+
 const app = express()
+
+//Connecting to MongoDB Atlas DB
+connectDB();
+
+//INIT Middleware
+app.use(express.json({extended: false}))
+
 
 const PORT = process.env.PORT || 5000;
 
