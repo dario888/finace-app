@@ -1,6 +1,10 @@
 const express = require('express');
-const {check, validationResult} = require('express-validator/check');
 const router = express.Router()
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const {check, validationResult} = require('express-validator/check');
+require('dotenv').config()
+
 const User = require('../models/User')
 
 
@@ -13,11 +17,51 @@ router.post('/',
         check('password', 'Please eneter password with 6 or more characters').isLength({min: 6})
     
     ], 
-    (req, res) => {
+    
+    async (req, res) => {
         const errors = validationResult(req)
         if(!errors.isEmpty()) return res.status(400).json({errors: errors.array()})
 
-        res.send('passed')
+       const {name, email, password} = req.body;
+
+       try {
+        //geting User from DB
+        let user = await User.findOne({email})
+           
+        if(user)return res.status(400).json({msg: 'User already exist'})
+
+        user = new User({
+            name,
+            email,
+            password
+        })
+
+        //incripting the password
+        const salt = await bcrypt.genSalt(10)
+        user.password = await bcrypt.hash(password, salt)
+        await user.save();
+
+        //Singning the token -> payload, secret, expires, return token
+        const payload = {
+            user: {
+                id: user.id
+            }
+        }
+
+        jwt.sign(payload, process.env.JWT, {
+            expiresIn: 36000
+
+        }, (err, token) => {
+            if(err)throw err;
+            res.json({token})
+
+        })
+
+       } catch (err) {
+           console.log(err);
+           res.status(500).send('Server Error')
+           
+       }
     }
 )
 
