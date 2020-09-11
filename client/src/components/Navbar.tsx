@@ -29,7 +29,7 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/budget" activeClassName="active" className={`navLink btnNavHover`} >
+                    <NavLink exact to="/api/expenses" activeClassName="active" className={`navLink btnNavHover`} >
                         Budget
                     </NavLink>
                 </li>

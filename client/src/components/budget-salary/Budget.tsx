@@ -1,6 +1,7 @@
-import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react'
+import React, {useState, useEffect, ChangeEvent, FormEvent, useContext} from 'react'
 import BudgetListItem from './BudgetListItem'
 import ExpensePercentage from  './ExpensePercentage'
+// import {ExpensesContext} from '../../context/expenses/expensesState'
 import {v4} from 'uuid';
 
 
@@ -13,6 +14,7 @@ export type ExpenseOBJ = {
 
 
 const Budget = () => {
+    // const {expenses, getExpenses} = useContext(ExpensesContext)
 
     const [expenses, setExpenses] = useState<ExpenseOBJ[]>(JSON.parse(localStorage.getItem('expenses') as string ) || [] )
     const [budget, setBudget] = useState(0)
@@ -98,7 +100,7 @@ const Budget = () => {
 
     
     
-    let height100 = expenses.length && 'height100'
+    let height100 = expenses.length ? 'height100' : null
 
 
     return (
