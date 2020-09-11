@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+//COMPONETS
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Expenses from './components/expenses/Expenses'
+import Salary from './components/Salary'
+import Footer from './components/Footer';
+import LogIn from './components/auth/LogIn';
+import SignUp from './components/auth/SignUp';
+//CONTEXT
+import ExpensesState from './context/expenses/expensesState'
+
 import './App.css';
 
+
+
 function App() {
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ExpensesState>
+    <BrowserRouter>
+    <div className="app">
+      <Navbar  />
+      <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/api/expenses" component={Expenses} />
+      <Route exact path="/salary" component={Salary} />
+      <Route exact path="/login" component={LogIn}/>
+      <Route exact path="/signup" component={SignUp} />
+      </Switch>
+      <Footer />
     </div>
+    </BrowserRouter>
+    </ExpensesState>
   );
 }
 
