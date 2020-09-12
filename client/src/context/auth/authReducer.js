@@ -1,5 +1,5 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
-    LOGIN_FAIL, LOGOUT, CLEAR_ERRORS} from '../types';
+import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
+    LOGIN_FAIL, LOGOUT, CLEAR_ERRORS} from '../type';
     
     
     const authReducer = (state, action) => {
@@ -11,7 +11,7 @@ import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,
                    loading: false,
                    user: action.payload
                 };
-            case REGISTER_SUCCESS:
+            case SIGNUP_SUCCESS:
             case LOGIN_SUCCESS:
                 localStorage.setItem('token', action.payload.token)
                 return {
@@ -20,7 +20,7 @@ import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,
                     isAuthenticated: true,
                     loading: false
                 };
-            case REGISTER_FAIL:
+            case SIGNUP_FAIL:
             case AUTH_ERROR:
             case LOGIN_FAIL:
             case LOGOUT:

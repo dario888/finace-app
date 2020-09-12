@@ -67,6 +67,29 @@ label {
   color: #d3d02b;
 }
 
+.alert {
+  position: fixed;
+  padding: 0.7rem;
+  top: 10vh;
+  left: 35%;
+  opacity: 0.9;
+  background: #f5f5f5;
+  color: #333;
+  z-index: 150;
+  border-radius: 8px;
+}
+
+.danger{
+  background: #dc3545;
+  color: #f5f5f5;
+ 
+}
+
+.success{
+  background: #28a745;
+  color: #f5f5f5;
+}
+
 /* ----------------------------------------NAVBAR--------------------------------------------------- */
 
 .navbar {
@@ -84,7 +107,10 @@ label {
  
 }
 
-
+ .userName {
+  color: #b7bbbb;
+  font-weight: bold;
+}
 /* -----------------------BURGER------------------ */
 .burger {
   width: 45px;
@@ -640,6 +666,10 @@ label {
   .modal h1 {
     font-size: 25px;
   }
+
+  .hideSm {
+    display: none;
+  }
   
 }
 
@@ -693,7 +723,10 @@ label {
     display: flex;
     flex-direction: column;
   }
-
+   /* ========================== Alert ================================== */
+  .alert{
+    left: 22%;
+  }
 
 
 }

@@ -28,7 +28,7 @@ router.post('/',
         //geting User from DB
         let user = await User.findOne({email})
            
-        if(user)return res.status(400).json({msg: 'User already exist'})
+        if(user)return res.status(400).json({msg: 'User already exists'})
 
         user = new User({
             name,
@@ -49,7 +49,7 @@ router.post('/',
         }
 
         jwt.sign(payload, process.env.JWT, {
-            expiresIn: 36000
+            expiresIn: 3600
 
         }, (err, token) => {
             if(err)throw err;

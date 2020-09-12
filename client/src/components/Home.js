@@ -1,6 +1,18 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react';
+import {AuthContext} from '../context/auth/authState'
 
 const Home = () => {
+
+    const {loadUser, isAuthenticated} = useContext(AuthContext);
+
+    useEffect(() => {
+        if(isAuthenticated){
+            loadUser();
+            
+        }
+        //eslint-disable-next-line
+    }, [isAuthenticated])
+    
     return (
         <div className="home"> 
            <h1>Finance Planner</h1>

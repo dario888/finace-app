@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from 'react'
 import ExpenseListItem from './ExpenseListItem'
 import ExpensePercentage from  './ExpensePercentage'
 // import {ExpensesContext} from '../../context/expenses/expensesState'
+import {AuthContext} from '../../context/auth/authState'
+import {useHistory} from 'react-router-dom'
 import {v4} from 'uuid';
 
 
@@ -9,6 +11,7 @@ import {v4} from 'uuid';
 
 const Expenses = () => {
     // const {expenses, getExpenses} = useContext(ExpensesContext)
+    const { isAuthenticated} = useContext(AuthContext)
 
     const [expenses, setExpenses] = useState(JSON.parse(localStorage.getItem('expenses')) || [] )
     const [budget, setBudget] = useState(0)
@@ -26,8 +29,14 @@ const Expenses = () => {
 
     }, [expenses])
     
-    // console.log(expenses )
-    // console.log(id )
+    const history = useHistory()
+
+    useEffect(()=>{
+       if(!isAuthenticated){
+        history.replace('/login')
+       }
+        // eslint-disable-next-line
+    },[])
 
   
     const setBudgetHendler = (e) => 

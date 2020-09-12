@@ -1,4 +1,6 @@
-import React, {useState, useEffect, ChangeEvent} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
+import {AuthContext} from '../context/auth/authState'
 
 
 
@@ -33,6 +35,16 @@ const Salary = () => {
     const displayGross = inputGross > grossMin ? inputGross : 0
     // console.log(displayGross) 
 
+    const { isAuthenticated} = useContext(AuthContext)
+    const history = useHistory()
+
+    useEffect(()=>{
+       if(!isAuthenticated){
+        history.replace('/login')
+       }
+        // eslint-disable-next-line
+    },[])
+    
     //Calculating salary from Gross to Net
     useEffect(()=>{
         setNetSalary(grossSalary - totalContributionsAndTaxes)
@@ -52,11 +64,11 @@ const Salary = () => {
     },[netToGross])
    
     
-    const changeGrossHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
+    const changeGrossHendler = (e) => !e.target.value
      ? setInputGross(0) : setInputGross( Math.abs(parseInt(e.target.value)) )  
 
      
-    const changeNetHendler = (e: ChangeEvent<HTMLInputElement>) => !e.target.value
+    const changeNetHendler = (e) => !e.target.value
     ? setCalcNetAmount(0) : setCalcNetAmount(Math.abs(parseInt(e.target.value)) )
      
     const clickResetHendler = () => {

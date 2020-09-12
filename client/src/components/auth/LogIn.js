@@ -1,25 +1,53 @@
-import React, { useState, Fragment} from 'react'
+import React, { useState, useContext, useEffect, Fragment} from 'react'
+import  {useHistory} from 'react-router-dom';
 import Home from '../Home'
+
+import {AlertContext} from '../../context/alert/alertState';
+import {AuthContext} from '../../context/auth/authState';
 
 
 
 
 const LogIn = () => {
+    //CONTEXT
+    const {setAlert} = useContext(AlertContext); 
+    const {login, error, clearErrors, isAuthenticated} = useContext(AuthContext); 
 
     const [toggle, setToggle] = useState(true)
+    const [user, setUser] = useState({ email: '', password: ''})
 
-    let visible = toggle ? 'visible' : ''
-    let email, password;
-    const changeHendler = () => {
+    const history = useHistory();
+
+    useEffect(() => {
+        if(isAuthenticated){
+            history.push('/')
+        }
+
+        if(error === 'Invalid Credentials'){
+            setAlert(error, 'danger')
+            clearErrors();
+        }
+
+
+        //eslint-disable-next-line
+    }, [error,isAuthenticated, history])
+    
+    let {email, password} = user;
+
+    //Set the user
+    const changeHendler = (e) => setUser({...user, [e.target.name]: e.target.value });
+    
+    const submitHendler = (e) => {
+        e.preventDefault();
+
+        login({email, password})
         
     }
     
-    const submitHendler = () => {
-
-    }
-
     const toggleHendler = () => setToggle(false)
     
+    let visible = toggle ? 'visible' : ''
+
 
     return (
         <Fragment>
