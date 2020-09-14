@@ -114,8 +114,7 @@ const BudgetsState = (props) => {
             clearCurrentBudget, 
             updateBudget,    
             getBudgets,
-            clearBudgets,
-           
+            clearBudgets,     
 
         }}>
             {props.children}

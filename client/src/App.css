@@ -276,6 +276,7 @@ label {
 /* ----------------------------------------BUDGET--------------------------------------------------- */
 .budgetContainer{
   height: 100%;
+  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background: #515A5A;
@@ -346,6 +347,7 @@ label {
 .btnClear {
   width: 70px;
   padding: 8px 15px;
+  margin-bottom: 15px;
   font-size: 15px;
   border-radius: 5px;
   border: none;
@@ -353,6 +355,10 @@ label {
   color: #f5f5f5;
   margin-left: 60px;
   background: #E05113;
+}
+
+.btnClear:hover{
+  border: none;
 }
 
 /* ===================== LEFT SIDE ===============================*/
@@ -375,7 +381,7 @@ label {
 }
 
 .formMonths{
-  margin-top: 100px;
+  /* margin-top: 80px; */
   margin-left: 20px;
   height: 50px;
   width: 150px;

@@ -75,30 +75,12 @@ const Expenses = () => {
                         <option className="opt" value="December">December</option>
                     </select>
                 </form>
-                {/* <BudgetForm /> */}
-                
-            </div>
-             {/*<div className="costsContainer">
-                    <div className="divBudget">
-                        <h2 className="title">Budget</h2>
-                        <p>{!displayBudget ? '0' : displayBudget}</p>
-                    </div>
-                    <div className="divExpenses">
-                        <h2 className="title">Expenses</h2>
-                        <p>{!expenses.length ? '0' : sum} </p>
-                    </div>
-                    <div className="divBalance">
-                        <h2 className="title">Balance</h2>
-                        <p>
-                            {!expenses.length ? displayBudget : displayBudget - sum}
-                        </p>
-                    </div>
-                </div> */}
+                <BudgetForm />               
+            </div>  
 
             {/* RIGHT SIDE */}
              <div className="rightSide">
-             <ExpensesForm  />
-              
+             <ExpensesForm  />             
                 {/* display expenses */}
                 <div className="divList">
                     <ul className="list">
@@ -119,8 +101,24 @@ const Expenses = () => {
                     }
             </div>
         </div>
-
-            
+            {/* DISPLAY BILANCE */}
+            <div className="costsContainer">
+                <div className="divBudget">
+                    <h2 className="title">Budget</h2>
+                    <p>{'0'  }</p>
+                </div>
+                <div className="divExpenses">
+                    <h2 className="title">Expenses</h2>
+                    <p>0</p>{/* {!expenses.length ? '0' : sum}  */}
+                </div>
+                <div className="divBalance">
+                    <h2 className="title">Balance</h2>
+                    <p>
+                        0{/* {!expenses.length ? displayBudget : displayBudget - sum} */}
+                    </p>
+                </div>
+            </div>
+            {/* DISPLAY Percentage */}
             <div className="expPer">
                 <h2> {expenses && 'Expense Percentage'}</h2>
                 {  

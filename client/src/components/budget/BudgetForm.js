@@ -6,8 +6,8 @@ import {BudgetsContext} from '../../context/budget/budgetState'
 
 const BudgetForm = () => {
     
+    const { currentBudget, clearCurrentBudget, addBudget, updateBudget} = useContext(BudgetsContext);
     const {selectedMonth} = useContext(ExpensesContext);
-    const {currentBudget, clearCurrentBudget, addBudget, updateBudget} = useContext(BudgetsContext);
        
     const  [budget, setBudget] = useState( {amount: '', month: ''} );
     const {amount} = budget;

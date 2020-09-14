@@ -29,9 +29,9 @@ const Navbar = () => {
     const authLinks = (
         <Fragment>
             <li>
-            <a href='/' onClick={logoutHendeler} className="navLink btnNavHover" >
-               <i className="fas fa-sign-out-alt"></i> <span className="hideSm">Log Out</span>
-            </a>
+                <a href='#!' onClick={logoutHendeler} className="navLink btnNavHover" >
+                    <i className="fas fa-sign-out-alt"></i> <span className="hideSm">Log Out</span>
+                </a>
             </li>
         </Fragment>
     )
