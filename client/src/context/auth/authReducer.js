@@ -1,5 +1,5 @@
 import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
-    LOGIN_FAIL, LOGOUT, CLEAR_ERRORS} from '../type';
+    LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, TOGGLE_MODAL, SIGNUP_MODAL} from '../type';
     
     
     const authReducer = (state, action) => {
@@ -11,6 +11,7 @@ import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,
                    loading: false,
                    user: action.payload
                 };
+
             case SIGNUP_SUCCESS:
             case LOGIN_SUCCESS:
                 localStorage.setItem('token', action.payload.token)
@@ -20,6 +21,7 @@ import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,
                     isAuthenticated: true,
                     loading: false
                 };
+
             case SIGNUP_FAIL:
             case AUTH_ERROR:
             case LOGIN_FAIL:
@@ -38,6 +40,18 @@ import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS,
                 return {
                     ...state,
                     error: null
+                };
+
+            case TOGGLE_MODAL:
+                return {
+                    ...state,
+                    toggle: action.payload
+                };
+
+            case SIGNUP_MODAL:
+                return {
+                    ...state,
+                    toggleSignUp: action.payload
                 };
     
             default:

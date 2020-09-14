@@ -9,9 +9,9 @@ import {AuthContext} from '../../context/auth/authState';
 const SignUp = () => {
     //Context
     const {setAlert} = useContext(AlertContext); 
-    const {register, error, clearErrors, isAuthenticated} = useContext(AuthContext); 
+    const {register, error, clearErrors, isAuthenticated, toggleSignUp, setSignUp} = useContext(AuthContext); 
 
-    const [toggle, setToggle] = useState(true)
+  
    
     const [user, setUser] = useState({
         name: '',
@@ -51,10 +51,10 @@ const SignUp = () => {
         
     }
     
-    const toggleHendler = () => setToggle(false)
+    const toggleHendler = () => setSignUp(false)
     
     
-    let visible = toggle ? 'visible' : ''
+    let visible = toggleSignUp ? 'visible' : ''
 
 
     return (

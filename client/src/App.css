@@ -275,7 +275,7 @@ label {
 }
 /* ----------------------------------------BUDGET--------------------------------------------------- */
 .budgetContainer{
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background: #515A5A;
@@ -315,7 +315,7 @@ label {
   padding: 10px 20px;
   margin-bottom: 1rem; 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   background: #4D41A4;
   border-radius: 10px;
   border: 1px solid #f5f5f5; 
@@ -372,6 +372,29 @@ label {
   box-shadow: 3px 5px 10px #f5f5f5;
   transform: translateY(-1px);
   
+}
+
+.formMonths{
+  margin-top: 100px;
+  margin-left: 20px;
+  height: 50px;
+  width: 150px;
+  color: #f5f5f5; 
+}
+
+.formMonths h4 {
+  margin: 0;
+}
+
+#selectMonths {
+  background:transparent;
+  color: #b7bbbb;
+  border: none;
+  cursor: pointer;
+}
+
+.opt{
+  background: rgb(97, 97, 97);
 }
 
 .inputForms{

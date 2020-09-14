@@ -1,23 +1,30 @@
 import React, {useState, useContext, Fragment,  } from 'react'
 import {NavLink} from 'react-router-dom'
 import {AuthContext} from '../context/auth/authState'
+import {ExpensesContext} from '../context/expenses/expensesState'
 
 
 
 
 const Navbar = () => {
 
-    const {logout, isAuthenticated} = useContext(AuthContext)
+    const {logout, isAuthenticated, setToggle, setSignUp} = useContext(AuthContext)
+    const {clearExpanses} = useContext(ExpensesContext)
 
     const [open, setOpen] = useState(false)
-    
+
     const change = open && 'change' 
     const verNav = open ? 'show': 'close' 
 
     
-    const logoutHendeler = () => logout();
+    const logoutHendeler = () =>{ 
+        logout();
+        clearExpanses();
+        
+    };
  
-
+    const openLogInForm = () => setToggle(true)
+    const openSignUpForm = () => setSignUp(true)
 
     const authLinks = (
         <Fragment>
@@ -46,12 +53,14 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/api/expenses" activeClassName="active" className="navLink btnNavHover" >
-                        Budget
+                    <NavLink exact to="/api/expenses" activeClassName="active" 
+                    onClick={openLogInForm} className="navLink btnNavHover" >
+                        Bilance
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/salary" activeClassName="active" className="navLink btnNavHover" >
+                    <NavLink exact to="/salary" activeClassName="active" 
+                    onClick={openLogInForm} className="navLink btnNavHover" >
                         Salary
                     </NavLink>
                 </li>
@@ -59,13 +68,15 @@ const Navbar = () => {
                     isAuthenticated ? authLinks :
                     <Fragment>
                     <li>
-                        <NavLink exact to="/login" activeClassName="active" className="navLink btnNavHover" >
+                        <NavLink exact to="/login" activeClassName="active" 
+                        onClick={openLogInForm} className="navLink btnNavHover" >
                             Log In
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/signup" activeClassName="active" className="navLink btnNavHover" >
-                            Sign Up
+                        <NavLink exact to="/signup" activeClassName="active" 
+                        onClick={openSignUpForm} className="navLink btnNavHover" >
+                            Sign Up 
                         </NavLink>
                     </li>
                 </Fragment>

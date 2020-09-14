@@ -3,7 +3,7 @@ import axios from 'axios';
 import expensesReducer from './expensesReducer';
 
 import {ADD_EXPENSE, UPDATE_EXPENSE, DELETE_EXPENSE, CLEAR_CURRENT, 
-SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES} from '../type.js';
+SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES, SET_MOTH} from '../type.js';
 
 
 
@@ -14,7 +14,8 @@ const ExpenseState = (props) => {
     const initialState = {
         expenses: null,
         current: null,
-        filtered: null,
+        loading: true,
+        selectedMonth: '', 
         error: null
     };
    
@@ -26,18 +27,13 @@ const ExpenseState = (props) => {
             const res = await axios.get('/api/expenses');
     
             dispatch({type: GET_EXPENSES, payload: res.data});
-            console.log(res.data)
+            // console.log(res.data)
 
-        } catch (err) {
-            dispatch({type: EXPENSES_ERROR, payload: err.response.message});
+        } catch (error) {
+            dispatch({type: EXPENSES_ERROR, payload: error.response.msg});
             
         }
         
-    }
-
-    //Clear Expenses
-    const clearExpanses = () => {
-        dispatch({type: CLEAR_EXPENSES})
     }
 
     //Add Expenses
@@ -48,83 +44,80 @@ const ExpenseState = (props) => {
             }
         }
         try {
-            const res = await axios.post('/api/contacts', expense, config);
+            const res = await axios.post('/api/expenses', expense, config);
     
             dispatch({type: ADD_EXPENSE, payload: res.data});
     
-        } catch (err) {
-            dispatch({type: EXPENSES_ERROR, payload: err.response.message});
+        } catch (error) {
+            dispatch({type: EXPENSES_ERROR, payload: error.response.msg});
             
         }
         
     }
 
      //Update Expenses
-     const updateContact = async (expense) => {
+     const updateExpense = async (expense) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
         }
         try {
-            const res = await axios.patch(`/api/contacts/${expense._id}`, expense, config);
+            //Update in DB
+            const res = await axios.put(`/api/expenses/${expense._id}`, expense, config);
     
-            dispatch({type: UPDATE_EXPENSE, payload: res.data})
-    
-        } catch (err) {
-            dispatch({type: EXPENSES_ERROR, payload: err.response.message});
+            dispatch({type: UPDATE_EXPENSE, payload: res.data})//update client
+            // console.log(res.data);
+        } catch (error) {
+            dispatch({type: EXPENSES_ERROR, payload: error.response.msg});
             
         }
         
     }
     
     //delete Expenses
-    const deleteContact = async (id) => {
+    const deleteExpense = async (id) => {
         try {
-            await axios.delete(`/api/contacts/${id}`);
+            await axios.delete(`/api/expenses/${id}`);//delete in DB
+           
+            dispatch({type: DELETE_EXPENSE, payload: id})//delete in cliient
     
-            dispatch({type: DELETE_EXPENSE, payload: id})
-    
-        } catch (err) {
-            dispatch({type: EXPENSES_ERROR, payload: err.response.message});
+        } catch (error) {
+            dispatch({type: EXPENSES_ERROR, payload: error.response.msg});
             
         }
         
     }
+
+
+    //Clear Expenses
+    const clearExpanses = () => dispatch({type: CLEAR_EXPENSES})
+    
     //Set Current Expenses
-    const currentContact = (expense) => {
-        dispatch({type: SET_CURRENT, payload: expense})
-    }
+    const currentExpense = (expense) => dispatch({type: SET_CURRENT, payload: expense})
+    
     //Clear Current Expenses
-    const clearCurrent = () => {
-        dispatch({type: CLEAR_CURRENT})
-    }
-   
-    // //Filter Expenses
-    // const filterContact = text => {
-    //     dispatch({type: FILTER_CONTACT, payload: text})
-    // }
-    // //Clear Expenses
-    // const clearFilter = () => {
-    //     dispatch({type: CLEAR_FILTER})
-    // }
+    const clearCurrent = () => dispatch({type: CLEAR_CURRENT})
+
+    const setMonth = (selected) => dispatch({type: SET_MOTH, payload: selected})
+    
 
 
     return (
         <ExpensesContext.Provider value={{
             expenses: state.expenses, 
             current: state.current, 
-            filtered: state.filtered,
+            loading: state.loading,
+            selectedMonth: state.selectedMonth,
             error: state.error,
             addExpanse, 
-            deleteContact, 
-            currentContact, 
+            deleteExpense, 
+            currentExpense, 
             clearCurrent, 
-            updateContact, 
-            // filterContact, 
-            // clearFilter,   
+            updateExpense,    
             getExpenses,
-            clearExpanses
+            clearExpanses,
+            setMonth
 
         }}>
             {props.children}

@@ -1,5 +1,5 @@
 import {ADD_EXPENSE, UPDATE_EXPENSE, DELETE_EXPENSE, CLEAR_CURRENT, 
-SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES} from '../type.js';
+SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES, SET_MOTH} from '../type.js';
 
     
        
@@ -10,7 +10,7 @@ const expenseReducer = (state, action) => {
             return {
                 ...state,
                 expenses: action.payload,
-                // loading: false
+                loading: false
             }
 
         case ADD_EXPENSE:
@@ -20,10 +20,18 @@ const expenseReducer = (state, action) => {
                 loading: false
             };
 
+        case UPDATE_EXPENSE:
+            return {
+                ...state,
+                expenses: state.expenses.map((expense) => expense._id === action.payload._id ?
+                action.payload : expense),
+                loading: false
+            };
+
         case DELETE_EXPENSE:
             return {
                 ...state,
-                expenses: state.expenses.filter((expense: object) => expense._id !== action.payload),
+                expenses: state.expenses.filter((expense) => expense._id !== action.payload),
                 loading: false
             };
 
@@ -31,7 +39,6 @@ const expenseReducer = (state, action) => {
             return {
                 ...state,
                 expenses: null,
-                filtered: null,
                 current: null,
                 error: null,
                 
@@ -49,34 +56,17 @@ const expenseReducer = (state, action) => {
                 current: null
             };
 
-        case UPDATE_EXPENSE:
-            return {
-                ...state,
-                expenses: state.expenses.map((expense: object) => expense._id === action.payload._id ?
-                action.payload : expense),
-                loading: false
-            };
-
-        // case FILTER_CONTACT:
-        //     return {
-        //         ...state,
-        //         filtered: state.contacts.filter(contact => {
-        //             const reqex = new RegExp(`${action.payload}`, 'gi');
-        //             return contact.name.match(reqex) || contact.email.match(reqex)
-        //         }) 
-        //     };
-
-        // case CLEAR_FILTER:
-        //     return {
-        //         ...state,
-        //         filtered: null 
-        //     };
-
         case EXPENSES_ERROR:
             return {
                 ...state,
                 error: action.payload 
             };
+
+        case SET_MOTH:
+        return {
+            ...state,
+            selectedMonth: action.payload 
+        };
 
         default:
             return state;

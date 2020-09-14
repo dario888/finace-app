@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 //COMPONETS
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Expenses from './components/expenses/Expenses';
+import Bilance from './components/Bilance';
 import Salary from './components/Salary';
 import Footer from './components/Footer';
 import LogIn from './components/auth/LogIn';
@@ -33,7 +33,7 @@ function App() {
             <Navbar />
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/api/expenses" component={Expenses} />
+                <Route exact path="/api/expenses" component={Bilance} />
                 <Route exact path="/salary" component={Salary} />
                 <Route exact path="/login" component={LogIn}/>
                 <Route exact path="/signup" component={SignUp} />

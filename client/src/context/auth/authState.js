@@ -3,7 +3,7 @@ import axios from 'axios';
 import authReducer from './authReducer';
 import setToken from '../setToken';
 import {SIGNUP_SUCCESS, SIGNUP_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, 
-LOGIN_FAIL, LOGOUT, CLEAR_ERRORS} from '../type';
+LOGIN_FAIL, LOGOUT, CLEAR_ERRORS, TOGGLE_MODAL, SIGNUP_MODAL} from '../type';
 
 
 
@@ -16,9 +16,11 @@ const AuthState = (props) => {
        isAuthenticated: null,
        loading: true,
        user: null,
+       toggle: true,
+       toggleSignUp: true,
        error: null
     };
-
+    // const [toggle, setToggle] = useState(true)
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     //Load User 
@@ -28,7 +30,7 @@ const AuthState = (props) => {
         
         try {
             const res = await axios.get('/api/auth');
-            dispatch({type: USER_LOADED, payload: res.data})
+            dispatch({type: USER_LOADED, payload: res.data})//geting user from DB
 
         } catch (err) {
             dispatch({type: AUTH_ERROR})
@@ -45,7 +47,7 @@ const AuthState = (props) => {
         }
         try {         
             const res = await axios.post('/api/users', formData, config);
-
+            //geting token from DB
             dispatch({type: SIGNUP_SUCCESS, payload: res.data});
             loadUser();
 
@@ -79,7 +81,12 @@ const AuthState = (props) => {
    
     //Clear Errors
     const clearErrors = () => dispatch({type: CLEAR_ERRORS});
-        
+    //Show modal onClik LogIn 
+    const setToggle = (boolTrue) => dispatch({type: TOGGLE_MODAL, payload: boolTrue});
+
+    //Show modal onClik Signup
+    const setSignUp = (boolTrue) => dispatch({type: SIGNUP_MODAL, payload: boolTrue});
+    
 
     
 
@@ -91,11 +98,15 @@ const AuthState = (props) => {
             loading: state.loading, 
             error: state.error, 
             user: state.user, 
+            toggle: state.toggle, 
+            toggleSignUp: state.toggleSignUp, 
             register, 
             loadUser, 
             login, 
             logout, 
-            clearErrors
+            clearErrors,
+            setToggle,
+            setSignUp
 
         }}>
             {props.children}

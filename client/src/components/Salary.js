@@ -8,11 +8,15 @@ import {AuthContext} from '../context/auth/authState'
 
 const Salary = () => {
 
+    const { token, loadUser } = useContext(AuthContext)
+    const history = useHistory()
+
     const [inputGross, setInputGross] = useState(0)
     const [grossSalary, setGrossSalary] = useState(0)
     const [netSalary, setNetSalary] = useState(0)
     const [calcNetAmount, setCalcNetAmount] = useState(0)
 
+    //---------------------------------- CALCULATONS ------------------------------------------------
     const grossMin = 19159;
     const netMin = 13238;
     
@@ -34,17 +38,22 @@ const Salary = () => {
 
     const displayGross = inputGross > grossMin ? inputGross : 0
     // console.log(displayGross) 
-
-    const { isAuthenticated} = useContext(AuthContext)
-    const history = useHistory()
-
+    //---------------------------------------------------------------------------------------------
+    
     useEffect(()=>{
-       if(!isAuthenticated){
+        loadUser();
+        // eslint-disable-next-line
+    },[])
+
+    //Auth redirect for login if the user is not login 
+    useEffect(()=>{
+       if(!token){
         history.replace('/login')
        }
         // eslint-disable-next-line
-    },[])
+    },[token])
     
+    //-------------------------------------------------------------------------------------------
     //Calculating salary from Gross to Net
     useEffect(()=>{
         setNetSalary(grossSalary - totalContributionsAndTaxes)
@@ -62,7 +71,7 @@ const Salary = () => {
         setGrossSalary(netToGross)
         // eslint-disable-next-line
     },[netToGross])
-   
+   //-------------------------------------------------------------------------------------------
     
     const changeGrossHendler = (e) => !e.target.value
      ? setInputGross(0) : setInputGross( Math.abs(parseInt(e.target.value)) )  

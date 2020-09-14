@@ -3,15 +3,15 @@ import {AuthContext} from '../context/auth/authState'
 
 const Home = () => {
 
-    const {loadUser, isAuthenticated} = useContext(AuthContext);
+    const {loadUser, token} = useContext(AuthContext);
 
     useEffect(() => {
-        if(isAuthenticated){
+        if(token){
             loadUser();
-            
-        }
+        }    
+        
         //eslint-disable-next-line
-    }, [isAuthenticated])
+    }, [token])
     
     return (
         <div className="home"> 

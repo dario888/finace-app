@@ -11,9 +11,9 @@ import {AuthContext} from '../../context/auth/authState';
 const LogIn = () => {
     //CONTEXT
     const {setAlert} = useContext(AlertContext); 
-    const {login, error, clearErrors, isAuthenticated} = useContext(AuthContext); 
+    const {login, error, clearErrors, isAuthenticated, setToggle, toggle} = useContext(AuthContext); 
 
-    const [toggle, setToggle] = useState(true)
+    
     const [user, setUser] = useState({ email: '', password: ''})
 
     const history = useHistory();
