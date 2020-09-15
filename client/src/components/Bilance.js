@@ -1,41 +1,65 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {useHistory} from 'react-router-dom';
 
-import ExpensesForm from './expenses/ExpensesForm'
-import BudgetForm from '../components/budget/BudgetForm'
-import ExpenseListItem from './expenses/ExpenseListItem'
-import ExpensePercentage from  './expenses/ExpensePercentage'
-import {ExpensesContext} from '../context/expenses/expensesState'
+import ExpensesForm from './expenses/ExpensesForm';
+import ExpenseListItem from './expenses/ExpenseListItem';
+import ExpensePercentage from  './expenses/ExpensePercentage';
+import BudgetForm from '../components/budget/BudgetForm';
+import BudgetListItem from './budget/BudgetListItem';
 
-import {AuthContext} from '../context/auth/authState'
+import {ExpensesContext} from '../context/expenses/expensesState';
+import {BudgetsContext} from '../context/budget/budgetState';
+import {AuthContext} from '../context/auth/authState';
+import {MonthContext} from '../context/month/monthState';
 
 
 
+const Bilance = () => {
 
-
-const Expenses = () => {
-
-    const {expenses, getExpenses, clearExpanses, setMonth} = useContext(ExpensesContext);
+    const {expenses, getExpenses} = useContext(ExpensesContext);
+    const {budgets, getBudgets} = useContext(BudgetsContext);
     const {token, loadUser} = useContext(AuthContext);
+    const {setMonth, selectedMonth} = useContext(MonthContext);
+
     const history = useHistory();
 
-    const [sum, setSum] = useState(0)
+    const [budgetSum, setBudgetSum] = useState(0);
+    const [expensesSum, setExpensesSum] = useState(0);
+
+    
 
     // console.log(month);
     useEffect(() => {
+        getBudgets();
         getExpenses();
-        loadUser()
+        loadUser();
         //eslint-disable-next-line
     },[]);
+ 
 
     useEffect(() => {
-        if(expenses){
-            setSum(expenses.reduce((acc, cv) => acc + parseInt(cv.amount), 0));
-            getExpenses();
+        if(!selectedMonth && budgets){
+            setBudgetSum(budgets.reduce((acc, cv) => acc + parseInt(cv.amount), 0));
+        }
+
+        if(selectedMonth){
+            setBudgetSum(selectedBudgets.reduce((acc, cv) => acc + parseInt(cv.amount), 0));
         }
         
     //eslint-disable-next-line
-    }, [expenses])
+    }, [budgets, selectedMonth])
+    
+    useEffect(() => {
+        if(!selectedMonth && expenses){
+            setExpensesSum(expenses.reduce((acc, cv) => acc + parseInt(cv.amount), 0));
+        }
+
+        if(selectedMonth){
+            setExpensesSum(selectedExpenses.reduce((acc, cv) => acc + parseInt(cv.amount), 0));
+        }
+        
+    //eslint-disable-next-line
+    }, [expenses, selectedMonth])
 
     
     //Auth redirect for login if the user is not login
@@ -49,8 +73,10 @@ const Expenses = () => {
   
     const onChangeMonth = (e) => setMonth( e.target.value )
     
-    // let height100 = expenses ? 'height100' : null
+    const resetSorting = () => history.go()
 
+    const selectedBudgets = budgets ? budgets.filter((budget) => budget.month === selectedMonth ) : null
+    const selectedExpenses = expenses ? expenses.filter((expense) => expense.month === selectedMonth ) : null
 
     return (
         <div className="bcg">
@@ -58,7 +84,7 @@ const Expenses = () => {
             {/* LEFT SIDE */}
             <div className="leftSide">
                 <form className="formMonths">
-                    <h4>Select Month</h4>
+                    <h5> Sort Budget and Expense by Month</h5>
                     <select id="selectMonths"  onChange={onChangeMonth} >
                         <option className="opt">Months</option>
                         <option className="opt" value="January">January</option>
@@ -74,8 +100,19 @@ const Expenses = () => {
                         <option className="opt" value="November">November</option>
                         <option className="opt" value="December">December</option>
                     </select>
+                <button id="resetSorting" onClick={resetSorting}>Reset Sorting</button>
                 </form>
-                <BudgetForm />               
+                <BudgetForm />   
+                <div className="divList">
+                    <ul className="list" id="budgetList">
+                        {
+                            !selectedMonth && budgets ? budgets.map((budget) => 
+                            <BudgetListItem  key={budget._id} budget={budget} /> )
+                            : selectedMonth && selectedBudgets.map((budget) => 
+                            <BudgetListItem  key={budget._id} budget={budget} />) 
+                        }
+                    </ul>
+                </div>            
             </div>  
 
             {/* RIGHT SIDE */}
@@ -85,36 +122,30 @@ const Expenses = () => {
                 <div className="divList">
                     <ul className="list">
                         {
-                            expenses ? expenses.map((expense) => {
-                                return (
-                                    <ExpenseListItem  key={expense._id} expense={expense} />
-                                )
-
-                            }) : null
+                            !selectedMonth && expenses ? expenses.map((expense) => 
+                            <ExpenseListItem  key={expense._id} expense={expense} /> ) 
+                            : selectedMonth && selectedExpenses.map((expense) => 
+                            <ExpenseListItem  key={expense._id} expense={expense} /> )
                         }
                     </ul>
                 </div>
-                    {
-                        expenses ? 
-                        <button className="btnClear btnHover" onClick={clearExpanses}>Clear</button> 
-                        : null
-                    }
+                 
             </div>
         </div>
             {/* DISPLAY BILANCE */}
             <div className="costsContainer">
                 <div className="divBudget">
                     <h2 className="title">Budget</h2>
-                    <p>{'0'  }</p>
+                    <p>{!budgets ? '0' : budgetSum  }</p>
                 </div>
                 <div className="divExpenses">
                     <h2 className="title">Expenses</h2>
-                    <p>0</p>{/* {!expenses.length ? '0' : sum}  */}
+                    <p>{!expenses ? '0' : expensesSum}</p>
                 </div>
                 <div className="divBalance">
                     <h2 className="title">Balance</h2>
-                    <p>
-                        0{/* {!expenses.length ? displayBudget : displayBudget - sum} */}
+                    <p className={budgetSum < expensesSum ? 'minusBln' : null}>
+                        { budgetSum - expensesSum}
                     </p>
                 </div>
             </div>
@@ -122,8 +153,10 @@ const Expenses = () => {
             <div className="expPer">
                 <h2> {expenses && 'Expense Percentage'}</h2>
                 {  
-                    expenses ? expenses.map((expense) => 
-                    <ExpensePercentage key={expense._id} expense={expense} sumAmount={sum}/> ) : null
+                    !selectedMonth && expenses ? expenses.map((expense) => 
+                    <ExpensePercentage key={expense._id} expense={expense} sumAmount={expensesSum}/> ) 
+                    : selectedMonth && selectedExpenses.map((expense) => 
+                    <ExpensePercentage key={expense._id} expense={expense} sumAmount={expensesSum}/> ) 
                 } 
             </div> 
         </div> 
@@ -135,7 +168,7 @@ const Expenses = () => {
     )
 }
 
-export default Expenses
+export default Bilance
 
      // const [month, setMonth] = useState('')
     // const [expenses, setExpenses] = useState(JSON.parse(localStorage.getItem('expenses')) || [] )

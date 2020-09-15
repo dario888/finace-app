@@ -18,7 +18,7 @@ const ExpenseListItem = ({expense}) => {
     return (
         <li className="item">
             <p className="expenseSpan">{expensesName}</p>
-            <p className="amountSpan">{amount}</p>
+            <p className="amountSpan">{amount} <span>den</span></p>
             <p className="amountSpan">{month}</p>
      
             <button className="editBtn" onClick={() => currentExpense(expense)}>

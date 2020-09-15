@@ -3,12 +3,12 @@ import React, {Fragment} from 'react'
 
 
 const ExpensePercentage = ({expense, sumAmount}) => {
-    const { expenseName,amount} = expense
+    const { expensesName, amount} = expense
     const percent = ( (parseInt(amount) / sumAmount) * 100 ).toFixed();
 
     return (
       <Fragment>
-            <h5>{expenseName && expenseName.toUpperCase()}</h5>
+            <h6>{expensesName && expensesName.toUpperCase()}</h6>
             <div className="bar">
                 <div className="progress" style={{width: `${percent}%`}}>
                     {percent + '%'}

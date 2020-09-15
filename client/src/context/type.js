@@ -18,6 +18,7 @@ export const CLEAR_CURRENT_BUDGET = 'CLEAR_CURRENT_BUDGET';
 export const UPDATE_BUDGET = 'UPDATE_BUDGET';
 export const ERROR_BUDGET = 'ERROR_BUDGET';
 
+
 //ALERT
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const SET_ALERT = 'SET_ALERT';
@@ -34,4 +35,6 @@ export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const SIGNUP_MODAL = 'SIGNUP_MODAL';
+
+//MONTH
 export const SET_MOTH = 'SET_MOTH';

@@ -15,6 +15,8 @@ import ExpensesState from './context/expenses/expensesState';
 import BudgetsState from './context/budget/budgetState';
 import AuthState from './context/auth/authState';
 import AlertState from './context/alert/alertState';
+import MonthState from './context/month/monthState';
+
 //STYLING
 import './App.css';
 
@@ -29,6 +31,7 @@ function App() {
     <AuthState>
       <ExpensesState>
         <BudgetsState>
+          <MonthState>
             <AlertState>
               <BrowserRouter>
                 <div className="app">
@@ -39,11 +42,12 @@ function App() {
                     <Route exact path="/salary" component={Salary} />
                     <Route exact path="/login" component={LogIn}/>
                     <Route exact path="/signup" component={SignUp} />
-                </Switch>
-                <Footer />
-                </div>
-              </BrowserRouter>
-            </AlertState>
+                  </Switch>
+                  <Footer />
+                  </div>
+               </BrowserRouter>
+              </AlertState>
+            </MonthState>
           </BudgetsState>
       </ExpensesState>
     </AuthState>

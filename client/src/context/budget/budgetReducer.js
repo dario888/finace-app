@@ -62,6 +62,7 @@ SET_CURRENT_BUDGET, ERROR_BUDGET, GET_BUDGET, CLEAR_BUDGET} from '../type.js';
                     error: action.payload 
                 };
     
+    
             default:
                 return state;
         }

@@ -15,6 +15,7 @@ const BudgetsState = (props) => {
         budgets: null,
         currentBudget: null,
         loading: true,
+        selectedMonth: '',
         error: null
     };
    
@@ -99,12 +100,14 @@ const BudgetsState = (props) => {
     const clearCurrentBudget = () => dispatch({type: CLEAR_CURRENT_BUDGET})
 
 
+
+
     
 
 
     return (
         <BudgetsContext.Provider value={{
-            expenses: state.expenses, 
+            budgets: state.budgets, 
             currentBudget: state.currentBudget, 
             loading: state.loading,
             error: state.error,
@@ -114,7 +117,7 @@ const BudgetsState = (props) => {
             clearCurrentBudget, 
             updateBudget,    
             getBudgets,
-            clearBudgets,     
+            clearBudgets,   
 
         }}>
             {props.children}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import expensesReducer from './expensesReducer';
 
 import {ADD_EXPENSE, UPDATE_EXPENSE, DELETE_EXPENSE, CLEAR_CURRENT, 
-SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES, SET_MOTH} from '../type.js';
+SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES} from '../type.js';
 
 
 
@@ -15,7 +15,6 @@ const ExpenseState = (props) => {
         expenses: null,
         current: null,
         loading: true,
-        selectedMonth: '', 
         error: null
     };
    
@@ -99,7 +98,6 @@ const ExpenseState = (props) => {
     //Clear Current Expenses
     const clearCurrent = () => dispatch({type: CLEAR_CURRENT})
 
-    const setMonth = (selected) => dispatch({type: SET_MOTH, payload: selected})
     
 
 
@@ -117,7 +115,6 @@ const ExpenseState = (props) => {
             updateExpense,    
             getExpenses,
             clearExpanses,
-            setMonth
 
         }}>
             {props.children}

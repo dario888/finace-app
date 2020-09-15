@@ -1,5 +1,5 @@
 import {ADD_EXPENSE, UPDATE_EXPENSE, DELETE_EXPENSE, CLEAR_CURRENT, 
-SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES, SET_MOTH} from '../type.js';
+SET_CURRENT, EXPENSES_ERROR, GET_EXPENSES, CLEAR_EXPENSES} from '../type.js';
 
     
        
@@ -61,12 +61,6 @@ const expenseReducer = (state, action) => {
                 ...state,
                 error: action.payload 
             };
-
-        case SET_MOTH:
-        return {
-            ...state,
-            selectedMonth: action.payload 
-        };
 
         default:
             return state;

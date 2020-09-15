@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment} from 'react'
 import  {useHistory} from 'react-router-dom';
 import Home from '../Home'
+import Alert from '../../components/Alert'
 
 import {AlertContext} from '../../context/alert/alertState';
 import {AuthContext} from '../../context/auth/authState';
@@ -24,6 +25,11 @@ const LogIn = () => {
         }
 
         if(error === 'Invalid Credentials'){
+            setAlert(error, 'danger')
+            clearErrors();
+        }
+
+        if(error === 'Invalid Password'){
             setAlert(error, 'danger')
             clearErrors();
         }
@@ -52,6 +58,7 @@ const LogIn = () => {
     return (
         <Fragment>
             <Home />         
+            <Alert />         
             <div id="backdrop" className={visible} onClick={toggleHendler}></div>
             <div className={`modal ${visible}`}>
             <h1>Account <span className="textPrimary">Login</span></h1>
