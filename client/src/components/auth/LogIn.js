@@ -31,12 +31,13 @@ const LogIn = () => {
 
         if(error === 'Invalid Password'){
             setAlert(error, 'danger')
+            setUser({password: ''})
             clearErrors();
         }
 
 
         //eslint-disable-next-line
-    }, [error,isAuthenticated, history])
+    }, [error,isAuthenticated, ])
     
     let {email, password} = user;
 
@@ -50,7 +51,10 @@ const LogIn = () => {
         
     }
     
-    const toggleHendler = () => setToggle(false)
+    const toggleHendler = () => {
+        setToggle(false)
+        setUser({ email: '', password: ''})
+    }
     
     let visible = toggle ? 'visible' : ''
 

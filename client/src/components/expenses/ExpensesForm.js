@@ -7,8 +7,8 @@ import {AlertContext} from '../../context/alert/alertState';
 
 const ExpensesForm = () => {
     //selectedMonth
-    const { addExpanse, updateExpense, current, clearCurrent,
-    } = useContext(ExpensesContext);
+    const { addExpanse, updateExpense, current, clearCurrent, 
+    expenses, getExpenses} = useContext(ExpensesContext);
     const { setAlert } = useContext(AlertContext);
     
     const  [expense, setExpense] = useState( {expensesName: '', amount: '', month: ''} );
@@ -17,6 +17,7 @@ const ExpensesForm = () => {
     const arrMonths = ['January', 'February','March','April','May','June','July','August','September',
     'October','November','December']
     
+
     useEffect(() => {
         //current=expense
         if(current){
@@ -27,13 +28,13 @@ const ExpensesForm = () => {
         }
         
     }, [current]);
-
-    // useEffect(() => {
-    //     setExpense({...expense, month: selectedMonth});
-    //     // eslint-disable-next-line
-    // },[selectedMonth])
     
- 
+
+    useEffect(() => {
+        getExpenses()
+        // eslint-disable-next-line
+    }, [expenses]);
+
   
     const onChangeExpense = (e) => e.target.name === 'amount' 
         ? setExpense( { ...expense, [e.target.name]: Math.abs(Number(e.target.value)) } )
@@ -41,7 +42,6 @@ const ExpensesForm = () => {
             
       
 
-    // console.log(selectedMonth);
 
     const onSubmitExpense = e => {
         e.preventDefault();
@@ -108,18 +108,3 @@ const ExpensesForm = () => {
 export default ExpensesForm
 
 
-/* <div className="leftSide">
-           <form className="budgetForm" onSubmit={submitBudget}>
-                <h3>Budget</h3>
-                <div className="formGroup">
-                    <input type="number" value={budget.toString()} onChange={setBudgetHendler}
-                    className="inputForms" id="bgtInp" required/>
-                </div>
-                <button type="submit" onClick={resetBudget} className="btnHover btnForm" id="budgetReset">
-                    Reset Budget
-                </button>
-                <button type="submit" className="btnForm btnHover" id="budgetSubmit">
-                    Add Budget
-                </button>
-            </form> 
-            </div> */

@@ -23,8 +23,14 @@ const Navbar = () => {
         
     };
  
-    const openLogInForm = () => setToggle(true)
-    const openSignUpForm = () => setSignUp(true)
+    const openLogInForm = () => {
+        setToggle(true);
+        setOpen(!open);
+    }
+    const openSignUpForm = () => {
+        setSignUp(true); 
+        setOpen(!open)
+    }
 
     const authLinks = (
         <Fragment>
@@ -38,9 +44,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="logo">
-                <i className="fas fa-comment-dollar fa-3x" id="dollar"></i>
-            </div>
+            <a href='/' className="logo">F<span>P</span> </a>
             <button className={`burger ${change}`} onClick={() => setOpen(!open)} >
                 <div className="line1"></div>
                 <div className="line2"></div>
@@ -48,7 +52,7 @@ const Navbar = () => {
             </button>
             <ul className={`listNav ${open && 'verticalNav'} ${verNav}`}>
                 <li>
-                    <NavLink exact to="/" activeClassName="active" className="navLink btnNavHover" >
+                    <NavLink exact to="/" onClick={() => setOpen(!open)} activeClassName="active" className="navLink btnNavHover" >
                         Home
                     </NavLink>
                 </li>

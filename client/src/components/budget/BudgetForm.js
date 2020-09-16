@@ -9,7 +9,8 @@ import {AlertContext} from '../../context/alert/alertState';
 
 const BudgetForm = () => {
     
-    const { currentBudget, clearCurrentBudget, addBudget, updateBudget} = useContext(BudgetsContext);
+    const { currentBudget, clearCurrentBudget, addBudget, updateBudget, 
+    budgets, getBudgets} = useContext(BudgetsContext);
     const {setAlert} = useContext(AlertContext);
     // const {selectedMonth} = useContext(ExpensesContext);
        
@@ -18,6 +19,7 @@ const BudgetForm = () => {
 
     const arrMonths = ['January', 'February','March','April','May','June','July','August','September',
     'October','November','December']
+    
     
     useEffect(() => {
         //current=expense
@@ -30,19 +32,17 @@ const BudgetForm = () => {
         
     }, [currentBudget]);
 
-    // useEffect(() => {
-    //     setBudget({...budget, month: selectedMonth});
-    //     // eslint-disable-next-line
-    // },[selectedMonth])
-    
 
+    useEffect(() => {
+        getBudgets();
+        // eslint-disable-next-line
+    },[budgets])
+    
     
     const setBudgetHendler = (e) => e.target.name === 'amount' 
     ? setBudget({ ...budget, [e.target.name]: Math.abs(Number(e.target.value))}) 
     : setBudget({...budget, [e.target.name]: e.target.value});
 
-
-    // console.log(selectedMonth);
 
     const onSubmitBudget = e => {
         e.preventDefault();
@@ -102,12 +102,4 @@ const BudgetForm = () => {
 export default BudgetForm
 
 
-    // const setBudgetHendler = (e) => 
-    // setBudget(Math.abs(parseInt(e.target.value)))
-    
-    // const submitBudget = (e) => {
-    //     e.preventDefault()
-    //     // setDisplayBudget(displayBudget )
-    //     setDisplayBudget(displayBudget + budget)
-    //     setBudget(0)
-    // }
+ 

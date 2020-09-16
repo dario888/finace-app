@@ -36,7 +36,7 @@ const SignUp = () => {
 
 
         //eslint-disable-next-line
-    },[error, isAuthenticated, history])
+    },[error, isAuthenticated])
     
 
     //Set the user
@@ -45,13 +45,19 @@ const SignUp = () => {
     const submitHendler = (e) => {
         e.preventDefault();
   
-        if(password !== passwordConfirm) setAlert('Password do not match', 'danger'); 
+        if(password !== passwordConfirm) {
+            setUser({...user, password: '', passwordConfirm: ''})
+            return setAlert('Password do not match', 'danger');
+        } 
         
         register({name, email, password});//geting token from server
         
     }
     
-    const toggleHendler = () => setSignUp(false)
+    const toggleHendler = () => { 
+        setSignUp(false)
+        setUser({name: '', email: '', password: '', passwordConfirm: ''})
+    }
     
     
     let visible = toggleSignUp ? 'visible' : ''
@@ -67,7 +73,8 @@ const SignUp = () => {
             <form onSubmit={submitHendler}>
                 <div className="modalContent">
                     <label htmlFor="name">Name</label>
-                    <input type="text" name='name' value={name} onChange={changeHendler} required/>
+                    <input type="text" name='name' value={name && name.split(' ').map(x =>  !x ? x : x[0].toUpperCase() + x.slice(1).toLowerCase() ).join(' ')} 
+                    onChange={changeHendler}  maxLength={30} required/>
                 </div>
                 <div className="modalContent">
                     <label htmlFor="email">Email</label>

@@ -11,6 +11,7 @@ body {
 
 ul{
   list-style: none;
+  padding-inline-start: 0;
 }
 
 button:focus {
@@ -31,10 +32,14 @@ a {
 }
 
 label {
-  font-weight: bold;
+  font-weight: normal;
   margin: 0.5rem 0;
   color: #464646;
   display: block;
+}
+
+h3 h4 {
+  font-weight: normal;
 }
 
 /*------------------------- UTILYTIES --------------------------------------------------- */
@@ -53,7 +58,6 @@ label {
 }
 
 .btnHover:hover {
-  border: 1px solid;
   opacity: 0.8;
 } 
 
@@ -93,7 +97,7 @@ label {
 /* ----------------------------------------NAVBAR--------------------------------------------------- */
 
 .navbar {
-  background: #E05113;
+  background: #464646;
   width: 100%;
   height: 60px;
   position: fixed;
@@ -117,7 +121,7 @@ label {
   height: 45px;
   position: fixed;
   top: 15px;
-  right: 20px;
+  right: 15px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -132,11 +136,15 @@ label {
 
 .logo{
   margin-left: 40px;
-  padding: 5px 0 ;
+  background: #2e3131;
+  color: #b7bbbb;
+  font-family: 'Cinzel', serif;
+  font-size: 50px;
+  border: 2px solid;
 }
 
-#dollar {
-  color: #4D41A4;
+.navbar span {
+  color: #1ABC9C;
 }
 
 .line1, .line2, .line3{
@@ -267,29 +275,32 @@ label {
 }
 
 #subSignUp, #subLogin {
-  background: #6857ec;
+  background: #33960c;
 }
 
 .authBg{
   height: 100vh;
 }
-/* ----------------------------------------BUDGET--------------------------------------------------- */
+/* ----------------------------------------BILANCE--------------------------------------------------- */
 .budgetContainer{
   height: 100%;
   margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background: #515A5A;
+  background: #2e3131;
 }
 
-.leftSide, .rightSide {
-  padding-top: 100px;
-}
 
-.leftSide{
-  padding-left: 20px;
-}
 /* ============================== RIGTH SIDE======================*/
+.rightSide {
+  /* padding-left: 20px; */
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .costsContainer {
   color: #b7bbbb;
   
@@ -305,31 +316,29 @@ label {
 
 .divList {
   margin: 0 20px;
-  
+  width: 80%;
 }
 
 .list{
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
   justify-content: space-between;
+
 }
 
 .list .item{
   height: 30px;
-  padding: 10px 20px;
+  padding: 4px 0 ;
   margin-bottom: 1rem; 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  background: #4D41A4;
-  border-radius: 10px;
-  border: 1px solid #f5f5f5; 
+  background: #5300be;
+  border-radius: 4px;
+  border: 1px solid #fa5d08; 
   transition: all .4s;
-}
-
-#budgetList .item{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
 }
 
 .item p {
@@ -353,51 +362,26 @@ label {
   color: #E05113;
 }
 
-.btnClear {
-  width: 70px;
-  padding: 8px 15px;
-  margin-bottom: 15px;
-  font-size: 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  color: #f5f5f5;
-  margin-left: 60px;
-  background: #E05113;
-}
 
 .btnClear:hover{
   border: none;
 }
 
 /* ===================== LEFT SIDE ===============================*/
-.budgetForm{
-  margin-bottom: 30px;
-}
-.budgetForm, .expenseForm {
-  width: 80%;
-  padding: 15px;
-  background: rgba(0,0,0, 0.3);
-  border-radius: 10px;
-  color: #f5f5f5;
-  transition: all .4s; 
-}
-
-.budgetForm:hover, .expenseForm:hover {
-  box-shadow: 3px 5px 10px #f5f5f5;
-  transform: translateY(-1px);
-  
+.leftSide{
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .formMonths{
-  /* margin-top: 80px; */
-  /* border:1px solid ; */
+  margin-top: 0;
   margin-bottom: 10px;
-  margin-left: 20px;
   height: 50px;
-  width: 350px;
+  width: 80%;
   color: #f5f5f5; 
-  
 }
 
 .formMonths h5 {
@@ -405,9 +389,24 @@ label {
   font-weight: normal;
 }
 
-#resetSorting{
+.opt{
+  background: rgb(97, 97, 97);
+}
+
+#resetSorting {
   display: flex;
   float: right;
+  border-radius: 4px;
+  border: none;
+  padding: 5px 8px;
+  background: #E05113;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+#resetSorting:hover {
+  border: 1px solid;
+  opacity: 0.8;
 }
 
 #selectMonths {
@@ -417,8 +416,20 @@ label {
   cursor: pointer;
 }
 
-.opt{
-  background: rgb(97, 97, 97);
+.budgetForm, .expenseForm {
+  width: 80%;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: rgba(0,0,0, 0.3);
+  border-radius: 10px;
+  color: #f5f5f5;
+  transition: all .4s; 
+}
+
+.budgetForm:hover, .expenseForm:hover {
+  box-shadow: 3px 5px 10px #f5f5f5;
+  transform: translateY(-1px);
 }
 
 .inputForms{
@@ -433,8 +444,15 @@ label {
 
 #budgetSubmit, #expenseSubmit{
   margin: 20px 0;
-  background: #4D41A4;
+  background: #33960c;
 
+}
+
+#budgetList .item{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  text-align: center;
 }
 
 .costsContainer{
@@ -450,7 +468,7 @@ label {
 
 /*--------------PROGRESS BAR------------------*/
 .bcg {
-  background: #515A5A;
+  background: #2e3131;
   padding-bottom: 50px ;
 }
 
@@ -459,7 +477,7 @@ label {
   width: 800px;
   padding: 10px 20px;
   color: #f5f5f5;
-  background: #515A5A;
+  background: #3d3f3f;
   border-radius: 10px;
 }
 
@@ -474,25 +492,29 @@ label {
 }
 
 .progress{
-  background: #E05113;
-  padding: 5px 0;
-  border-radius: 10px;
+  height: 30px;
+  background: #33960c;
+  border-radius: 4px;
+  text-align: center;
+  
 }
 
- .bar {
+.bar {
   height: 30px;
-  text-align: center;
   color: #f5f5f5;
-  background: #4D41A4;
-  border: 1px solid;
-  border-radius: 10px;
+  background: #E05113;
+  border-radius: 4px;
+}
+
+.percentNum{
+  padding: 5px 0;
 }
 
 
 
 /* ----------------------------------------Salary--------------------------------------------------- */
 .containerSalary{
-  background: #515A5A;
+  background: #2e3131;
   height: 100%;
   padding-top: 100px;
   display: flex;
@@ -510,7 +532,7 @@ label {
 }
 
 .inputSalary label{
-  color: #f5f5f5;
+  color: #B5653B;
 }
 .inputSalary div{
   width: 250px;
@@ -540,7 +562,7 @@ label {
   margin-bottom: 30px;
   border: none;
   color: #f5f5f5;
-  background: #6857ec;
+  background: #33960c;
   border-radius: 10px;
 }
 
@@ -563,10 +585,14 @@ label {
 
 /* ----------------------------------------FOOTER--------------------------------------------------- */
 .footer {
-  background: #4D41A4;
+  background: #3d3f3f;
   border-bottom: white;
   height: 100%;
   padding: 10px ;
+}
+
+.footer h2{
+  color: #B5653B;
 }
 
 .itemFooter {
@@ -586,18 +612,24 @@ label {
   
 }
 
-
 .copyRight {
   padding-bottom: 15px;
   margin-top: 10px;
-  color: #f5f5f5;
+  color: #B5653B;
   text-align: center;
-  border-top: 1px solid #f5f5f5;
+  border-top: 1px solid #1ABC9C;
 }
 
 /* ----------------------------------------MEDIA QUERY--------------------------------------------- */
 
 /*-------------------------- DESKTOP -------------------------------- */
+@media(max-width: 1040px){
+  #expensesList .item{
+    padding: 5px 0 12px;
+  }
+
+}
+
 @media(min-width: 772px){
   .burger{
     display: none;
@@ -636,8 +668,9 @@ label {
   .listNav li {
     color: #f5f5f5;
     padding-top: 15px;
+    padding-left: 20px;
   } 
-  /* ==========================BUDGET================================== */
+  /* ==========================BILANCE================================== */
   .budgetContainer{
     width: 100%;
     display: flex;
@@ -653,6 +686,7 @@ label {
     margin:0 auto;
     padding-inline-start: 0px;
   }
+
 
   .budgetForm{
     width: 350px;

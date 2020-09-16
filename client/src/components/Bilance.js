@@ -10,7 +10,7 @@ import BudgetListItem from './budget/BudgetListItem';
 import {ExpensesContext} from '../context/expenses/expensesState';
 import {BudgetsContext} from '../context/budget/budgetState';
 import {AuthContext} from '../context/auth/authState';
-import {MonthContext} from '../context/month/monthState';
+// import {MonthContext} from '../context/month/monthState';
 
 
 
@@ -19,9 +19,11 @@ const Bilance = () => {
     const {expenses, getExpenses} = useContext(ExpensesContext);
     const {budgets, getBudgets} = useContext(BudgetsContext);
     const {token, loadUser} = useContext(AuthContext);
-    const {setMonth, selectedMonth} = useContext(MonthContext);
+    // const {setMonth, selectedMonth} = useContext(MonthContext);
 
     const history = useHistory();
+
+    const [selectedMonth, setMonth] = useState('');
 
     const [budgetSum, setBudgetSum] = useState(0);
     const [expensesSum, setExpensesSum] = useState(0);
@@ -120,7 +122,7 @@ const Bilance = () => {
              <ExpensesForm  />             
                 {/* display expenses */}
                 <div className="divList">
-                    <ul className="list">
+                    <ul className="list" id="expensesList">
                         {
                             !selectedMonth && expenses ? expenses.map((expense) => 
                             <ExpenseListItem  key={expense._id} expense={expense} /> ) 
@@ -150,15 +152,17 @@ const Bilance = () => {
                 </div>
             </div>
             {/* DISPLAY Percentage */}
-            <div className="expPer">
+            {expenses && !expenses.length ? null
+                : <div className="expPer">
                 <h2> {expenses && 'Expense Percentage'}</h2>
+                
                 {  
                     !selectedMonth && expenses ? expenses.map((expense) => 
                     <ExpensePercentage key={expense._id} expense={expense} sumAmount={expensesSum}/> ) 
                     : selectedMonth && selectedExpenses.map((expense) => 
                     <ExpensePercentage key={expense._id} expense={expense} sumAmount={expensesSum}/> ) 
                 } 
-            </div> 
+            </div> }
         </div> 
                 
             
@@ -170,79 +174,5 @@ const Bilance = () => {
 
 export default Bilance
 
-     // const [month, setMonth] = useState('')
-    // const [expenses, setExpenses] = useState(JSON.parse(localStorage.getItem('expenses')) || [] )
-    // const [budget, setBudget] = useState(0)
-    // const [displayBudget, setDisplayBudget] = useState(0)
-    // const [expensesName, setExpensesName] = useState('') 
-    // const [amount, setAmount] = useState(0)
-    // const [edit, setEdit] = useState(false)
-    // const [id, setId] = useState('')
-
   
-    // const setBudgetHendler = (e) => 
-    // setBudget(Math.abs(parseInt(e.target.value)))
-    
-    // const submitBudget = (e) => {
-    //     e.preventDefault()
-    //     // setDisplayBudget(displayBudget )
-    //     setDisplayBudget(displayBudget + budget)
-    //     setBudget(0)
-    // }
-
-    // const setExpensesHendler = (e) => setExpensesName(e.target.value)
-
-    // const setAmountHendler = (e) => 
-    // setAmount(Math.abs(parseInt(e.target.value)))
-
-    // const submitExpenses = (e) => { 
-    //     e.preventDefault()
-
-    //     if(edit){
-    //         let editExpense = expenses.map((expense) => id === expense.id 
-    //         ? {...expense, expensesName, amount} : expense )
-
-    //         setEdit(false) 
-    //         setExpensesName('')
-    //         setAmount(0)
-
-    //         return setExpenses(editExpense)
-
-    //     }
-
-    //     // setExpenses([...expenses, {id: v4(), expensesName, amount}])
-
-    //     setExpensesName('')
-    //     setAmount(0)
-    // }
-
-    // const deleteHendler = (Id: string) => {
-    //     let expencesFilter = expenses.filter(expence => expence.id !== Id) 
-    //     // setExpenses( expencesFilter );
-    
-    // }
-
-    // const editHendler = (Id: string) => {
-    //     let expense = expenses.find(item => item.id === Id);
-    //     let {expensesName, amount} = expense;
-    //     setExpensesName(expensesName);
-    //     setAmount(amount);
-    //     setEdit(true);
-    //     setId(Id);
-    // }
-    
-    // const editCancle = () => {
-    //     setEdit(false);
-    //     setExpensesName('')
-    //     setAmount(0)
-
-    // }
-
-    // const clearItems = () => setExpenses([]);
-    // const resetBudget = () => setDisplayBudget(0);
-   //---------------------------------------------------------------------------------------------
-
-//    if(!contacts && !loading){
-//     return <h4>Please Add a Contact</h4>;
-//     }
     
