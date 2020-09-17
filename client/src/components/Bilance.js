@@ -10,7 +10,7 @@ import BudgetListItem from './budget/BudgetListItem';
 import {ExpensesContext} from '../context/expenses/expensesState';
 import {BudgetsContext} from '../context/budget/budgetState';
 import {AuthContext} from '../context/auth/authState';
-// import {MonthContext} from '../context/month/monthState';
+
 
 
 
@@ -18,8 +18,8 @@ const Bilance = () => {
 
     const {expenses, getExpenses} = useContext(ExpensesContext);
     const {budgets, getBudgets} = useContext(BudgetsContext);
-    const {token, loadUser} = useContext(AuthContext);
-    // const {setMonth, selectedMonth} = useContext(MonthContext);
+    const {token} = useContext(AuthContext);
+ 
 
     const history = useHistory();
 
@@ -34,7 +34,7 @@ const Bilance = () => {
     useEffect(() => {
         getBudgets();
         getExpenses();
-        loadUser();
+        
         //eslint-disable-next-line
     },[]);
  
@@ -82,10 +82,8 @@ const Bilance = () => {
 
     return (
         <div className="bcg">
-        <div className="budgetContainer">
-            {/* LEFT SIDE */}
-            <div className="leftSide">
-                <form className="formMonths">
+            <div className="divMonth">
+            <form className="formMonths">
                     <h5> Sort Budget and Expense by Month</h5>
                     <select id="selectMonths"  onChange={onChangeMonth} >
                         <option className="opt">Months</option>
@@ -102,8 +100,12 @@ const Bilance = () => {
                         <option className="opt" value="November">November</option>
                         <option className="opt" value="December">December</option>
                     </select>
-                <button id="resetSorting" onClick={resetSorting}>Reset Sorting</button>
+                    <button id="resetSorting" onClick={resetSorting}>Reset Sorting</button>
                 </form>
+            </div>
+        <div className="budgetContainer">
+            {/* LEFT SIDE */}
+            <div className="leftSide"> 
                 <BudgetForm />   
                 <div className="divList">
                     <ul className="list" id="budgetList">

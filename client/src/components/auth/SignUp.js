@@ -93,7 +93,7 @@ const SignUp = () => {
                 </div>
                 <div className="modalActions">
                     <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm btnHover" id="cancel"/>
-                    <input type="submit" value="Submit" className="btnForm btnHover" id="subSignUp"/>
+                    <input type="submit" value="Submit" className="btnForm btnHoverGreen" id="subSignUp"/>
                 </div>
             </form>
         </div>

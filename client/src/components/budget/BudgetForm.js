@@ -88,10 +88,10 @@ const BudgetForm = () => {
                     className="inputForms" id="bgtInp" max={500000}
                     required/>
                 </div>
-                <button type="submit" onClick={clearAll} className="btnHover btnForm" id="budgetReset">
+                <button type="submit" onClick={clearAll} className="btnForm" id="budgetReset">
                     Cancel
                 </button>
-                <button type="submit" className="btnForm btnHover" id="budgetSubmit">
+                <button type="submit" className="btnForm" id="budgetSubmit">
                 {currentBudget ? 'Update Contact' : 'Add Budget'} 
                 </button>
             </form>

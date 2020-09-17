@@ -8,7 +8,7 @@ import {AuthContext} from '../context/auth/authState'
 
 const Salary = () => {
 
-    const { token, loadUser } = useContext(AuthContext)
+    const { token } = useContext(AuthContext)
     const history = useHistory()
 
     const [inputGross, setInputGross] = useState(0)
@@ -39,12 +39,6 @@ const Salary = () => {
     const displayGross = inputGross > grossMin ? inputGross : 0
     // console.log(displayGross) 
     //---------------------------------------------------------------------------------------------
-    
-    useEffect(()=>{
-        loadUser();
-        // eslint-disable-next-line
-    },[])
-
     //Auth redirect for login if the user is not login 
     useEffect(()=>{
        if(!token){
@@ -71,6 +65,7 @@ const Salary = () => {
         setGrossSalary(netToGross)
         // eslint-disable-next-line
     },[netToGross])
+
    //-------------------------------------------------------------------------------------------
     
     const changeGrossHendler = (e) => !e.target.value
@@ -111,7 +106,7 @@ const Salary = () => {
                 
             </div>
             <div className="divBtnReset">
-                <button className="salaryReset btnHover" onClick={clickResetHendler}>
+                <button className="salaryReset btnHoverGreen" onClick={clickResetHendler}>
                     Reset Salary
                 </button>
             </div>

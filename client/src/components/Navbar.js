@@ -2,6 +2,7 @@ import React, {useState, useContext, Fragment,  } from 'react'
 import {NavLink} from 'react-router-dom'
 import {AuthContext} from '../context/auth/authState'
 import {ExpensesContext} from '../context/expenses/expensesState'
+import {BudgetsContext} from '../context/budget/budgetState'
 
 
 
@@ -10,26 +11,37 @@ const Navbar = () => {
 
     const {logout, isAuthenticated, setToggle, setSignUp} = useContext(AuthContext)
     const {clearExpanses} = useContext(ExpensesContext)
+    const {clearBudgets} = useContext(BudgetsContext)
 
     const [open, setOpen] = useState(false)
+    const [openVer, setOpenVer] = useState(true)
 
-    const change = open && 'change' 
-    const verNav = open ? 'show': 'close' 
+    const change = ((open && openVer) || (!open && !openVer)) ? 'change' : null 
+    const verNav = ((open && openVer) || (!open && !openVer)) ? 'show': 'close' 
+    const verticalNav = ((open && openVer) || (!open && !openVer)) ? 'verticalNav': null
 
     
     const logoutHendeler = () =>{ 
         logout();
         clearExpanses();
+        clearBudgets();
+        if(verNav === 'show'){
+            setOpenVer(!openVer);
+        }
         
     };
  
     const openLogInForm = () => {
         setToggle(true);
-        setOpen(!open);
+        if(verNav === 'show'){
+            setOpenVer(!openVer);
+        }
     }
     const openSignUpForm = () => {
         setSignUp(true); 
-        setOpen(!open)
+        if(verNav === 'show'){
+            setOpenVer(!openVer);
+        }
     }
 
     const authLinks = (
@@ -44,15 +56,17 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <a href='/' className="logo">F<span>P</span> </a>
+            <a href='/' className="logo">F<span id="pLed">P</span></a>
             <button className={`burger ${change}`} onClick={() => setOpen(!open)} >
                 <div className="line1"></div>
                 <div className="line2"></div>
                 <div className="line3"></div>
             </button>
-            <ul className={`listNav ${open && 'verticalNav'} ${verNav}`}>
+            <ul className={`listNav ${verticalNav} ${verNav}`}>
                 <li>
-                    <NavLink exact to="/" onClick={() => setOpen(!open)} activeClassName="active" className="navLink btnNavHover" >
+                    <NavLink exact to="/" 
+                    onClick={() => verNav === 'show' ? setOpenVer(!openVer) : null} 
+                    activeClassName="active" className="navLink btnNavHover" >
                         Home
                     </NavLink>
                 </li>

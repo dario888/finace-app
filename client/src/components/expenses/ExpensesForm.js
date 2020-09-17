@@ -81,9 +81,12 @@ const ExpensesForm = () => {
             </div>
             <h3>Expenses</h3>
             <div className="formGroup">
-                <input type="text" value={expensesName} onChange={onChangeExpense} 
+                <input type="text" 
+                value={expensesName && expensesName.split(' ').map(x =>  
+                !x ? x : x[0].toUpperCase() + x.slice(1).toLowerCase() ).join(' ') } 
+                onChange={onChangeExpense} 
                 name="expensesName"
-                className="inputForms" id="expInp" maxLength={13} required
+                className="inputForms" id="expInp" maxLength={25} required
                 placeholder="Expense Name"/>
             </div>
             <h3>Amount</h3>
@@ -93,10 +96,10 @@ const ExpensesForm = () => {
                 id="amtInp" placeholder="Enter Amount" max={500000} required/>
             </div>
             
-            <button type="button" onClick={clearAll} className="btnForm btnHover" id="expenseCancel">
+            <button type="button" onClick={clearAll} className="btnForm " id="expenseCancel">
                 Cancel
             </button>
-            <button type="submit"  className="btnForm btnHover" id="expenseSubmit">
+            <button type="submit"  className="btnForm" id="expenseSubmit">
             {current ? 'Update Contact' : 'Add Expenses'} 
             </button>
         </form>

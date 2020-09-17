@@ -51,15 +51,16 @@ h3 h4 {
   border: none;
   cursor: pointer;
   color: #f5f5f5;
+  background: #B5653B;
 }
 
-.btnForm {
-  background: #E05113;
-}
-
-.btnHover:hover {
-  opacity: 0.8;
+.btnForm:hover {
+  background: #9e4d21;
 } 
+
+#budgetSubmit:hover, #expenseSubmit:hover, .salaryReset:hover{
+  background: #10a88a
+}
 
 .btnNavHover:hover {
   border-bottom: 2px solid #1ABC9C;
@@ -143,7 +144,7 @@ h3 h4 {
   border: 2px solid;
 }
 
-.navbar span {
+.navbar #pLed {
   color: #1ABC9C;
 }
 
@@ -253,7 +254,7 @@ h3 h4 {
 }
 
 .textPrimary {
-  color: #fa5d08;
+  color: #1ABC9C;
 }
 
 .modal .modalActions {
@@ -275,7 +276,10 @@ h3 h4 {
 }
 
 #subSignUp, #subLogin {
-  background: #33960c;
+  background: #13856e;
+}
+#subSignUp:hover, #subLogin:hover {
+  background: #10a88a;
 }
 
 .authBg{
@@ -290,15 +294,62 @@ h3 h4 {
   background: #2e3131;
 }
 
+.divMonth {
+  padding-top: 100px;
+  
+}
+
+.formMonths{
+  margin-top: 0;
+  margin-left:35px ;
+  /* margin-bottom: 10px; */
+  height: 50px;
+  width: 40%;
+  color: #f5f5f5; 
+}
+
+.formMonths h5 {
+  margin: 0;
+  font-weight: normal;
+}
+
+.opt{
+  background: rgb(97, 97, 97);
+}
+
+#resetSorting {
+  display: flex;
+  float: right;
+  border-radius: 4px;
+  border: none;
+  padding: 5px 8px;
+  background: #B5653B;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+#resetSorting:hover {
+  background: #9e4d21;
+}
+
+#selectMonths {
+  background:transparent;
+  color: #b7bbbb;
+  border: none;
+  cursor: pointer;
+}
+
 
 /* ============================== RIGTH SIDE======================*/
 .rightSide {
   /* padding-left: 20px; */
-  padding-top: 100px;
+  /* padding-top: 100px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: center; 
+  
+ 
 }
 
 .costsContainer {
@@ -311,7 +362,7 @@ h3 h4 {
 }
 
 .title {
-  color: #B5653B  ;
+  color: #1ABC9C  ;
 }
 
 .divList {
@@ -334,9 +385,9 @@ h3 h4 {
   margin-bottom: 1rem; 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  background: #5300be;
+  background: #0042be;
   border-radius: 4px;
-  border: 1px solid #fa5d08; 
+  border: 1px solid #1ABC9C; 
   transition: all .4s;
   text-align: center;
 }
@@ -369,67 +420,29 @@ h3 h4 {
 
 /* ===================== LEFT SIDE ===============================*/
 .leftSide{
-  padding-top: 100px;
+  /* padding-top: 100px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.formMonths{
-  margin-top: 0;
-  margin-bottom: 10px;
-  height: 50px;
-  width: 80%;
-  color: #f5f5f5; 
-}
 
-.formMonths h5 {
-  margin: 0;
-  font-weight: normal;
-}
-
-.opt{
-  background: rgb(97, 97, 97);
-}
-
-#resetSorting {
-  display: flex;
-  float: right;
-  border-radius: 4px;
-  border: none;
-  padding: 5px 8px;
-  background: #E05113;
-  color: #f5f5f5;
-  cursor: pointer;
-}
-
-#resetSorting:hover {
-  border: 1px solid;
-  opacity: 0.8;
-}
-
-#selectMonths {
-  background:transparent;
-  color: #b7bbbb;
-  border: none;
-  cursor: pointer;
-}
 
 .budgetForm, .expenseForm {
   width: 80%;
   padding: 15px;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   background: rgba(0,0,0, 0.3);
   border-radius: 10px;
   color: #f5f5f5;
   transition: all .4s; 
+  
 }
 
 .budgetForm:hover, .expenseForm:hover {
-  box-shadow: 3px 5px 10px #f5f5f5;
-  transform: translateY(-1px);
+  box-shadow: 2px 2px 8px #f5f5f5
 }
 
 .inputForms{
@@ -444,7 +457,7 @@ h3 h4 {
 
 #budgetSubmit, #expenseSubmit{
   margin: 20px 0;
-  background: #33960c;
+  background: #13856e;
 
 }
 
@@ -493,7 +506,7 @@ h3 h4 {
 
 .progress{
   height: 30px;
-  background: #33960c;
+  background: #13856e;
   border-radius: 4px;
   text-align: center;
   
@@ -502,7 +515,7 @@ h3 h4 {
 .bar {
   height: 30px;
   color: #f5f5f5;
-  background: #E05113;
+  background: #B5653B;
   border-radius: 4px;
 }
 
@@ -529,11 +542,14 @@ h3 h4 {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
+  background: #464646;
+  border-radius: 5px;
 }
 
 .inputSalary label{
-  color: #B5653B;
+  color: #1ABC9C;
 }
+
 .inputSalary div{
   width: 250px;
   height: 90px;
@@ -562,8 +578,9 @@ h3 h4 {
   margin-bottom: 30px;
   border: none;
   color: #f5f5f5;
-  background: #33960c;
+  background: #13856e;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .tblSalary{
@@ -592,7 +609,7 @@ h3 h4 {
 }
 
 .footer h2{
-  color: #B5653B;
+  color: #1ABC9C;
 }
 
 .itemFooter {
@@ -652,7 +669,7 @@ h3 h4 {
     right: 0;
     height: 100vh;
     width: 300px;
-    background: #B5653B;
+    background: #515A5A;
     font-size: 22px;
     transition: transform 0.3s ease-in-out;
   }
@@ -679,9 +696,28 @@ h3 h4 {
     align-items: center;
   }
 
+  .divMonth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    
+  }
+
+  .formMonths {
+    margin-left: 0;
+  }
+
+  .formMonths h5{
+    display: none;
+  } 
+
+
+  /*--------------------------------------------*/
   .divList{
     width: 350px;
   }
+
   .list {
     margin:0 auto;
     padding-inline-start: 0px;
@@ -753,6 +789,22 @@ h3 h4 {
     display: none;
   }
   
+  .divMonth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .formMonths {
+    width: 80%;
+    margin-left: 0;
+  }
+  .formMonths h5{
+    display: none;
+  }
+
+  
 }
 
 @media(max-width: 420px){
@@ -760,7 +812,7 @@ h3 h4 {
     font-size: 20px;
   }
 
-  /* ==========================BUDGET================================== */
+  /* ==========================BILANCE================================== */
   .leftSide {
     padding-left: 0;
   }
@@ -777,6 +829,8 @@ h3 h4 {
     width: 350px;
     padding: 10px 0;
   }
+
+
 
   /* ==========================SALARY================================== */
 
