@@ -37,6 +37,13 @@ const Bilance = () => {
         
         //eslint-disable-next-line
     },[]);
+    // useEffect(() => {
+    //     if(!selectedMonth){
+    //         history.replace('/expenses')
+    //     }
+        
+    //     //eslint-disable-next-line
+    // },[selectedMonth]);
  
 
     useEffect(() => {
@@ -70,12 +77,13 @@ const Bilance = () => {
         history.replace('/login')
        }
         // eslint-disable-next-line
-    },[token])
+    },[])
     
   
     const onChangeMonth = (e) => setMonth( e.target.value )
     
-    const resetSorting = () => history.go()
+    const resetSorting = (e) => setMonth('')
+    
 
     const selectedBudgets = budgets ? budgets.filter((budget) => budget.month === selectedMonth ) : null
     const selectedExpenses = expenses ? expenses.filter((expense) => expense.month === selectedMonth ) : null
@@ -86,7 +94,6 @@ const Bilance = () => {
             <form className="formMonths">
                     <h5> Sort Budget and Expense by Month</h5>
                     <select id="selectMonths"  onChange={onChangeMonth} >
-                        <option className="opt">Months</option>
                         <option className="opt" value="January">January</option>
                         <option className="opt" value="February">February</option>
                         <option className="opt" value="March">March</option>
@@ -100,7 +107,7 @@ const Bilance = () => {
                         <option className="opt" value="November">November</option>
                         <option className="opt" value="December">December</option>
                     </select>
-                    <button id="resetSorting" onClick={resetSorting}>Reset Sorting</button>
+                    <button type="button" id="resetSorting" onClick={resetSorting}>Reset Sorting</button>
                 </form>
             </div>
         <div className="budgetContainer">

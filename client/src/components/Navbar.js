@@ -9,7 +9,7 @@ import {BudgetsContext} from '../context/budget/budgetState'
 
 const Navbar = () => {
 
-    const {logout, isAuthenticated, setToggle, setSignUp} = useContext(AuthContext)
+    const {logout, token, setToggle, setSignUp} = useContext(AuthContext)
     const {clearExpanses} = useContext(ExpensesContext)
     const {clearBudgets} = useContext(BudgetsContext)
 
@@ -83,7 +83,7 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 {
-                    isAuthenticated ? authLinks :
+                    token ? authLinks :
                     <Fragment>
                     <li>
                         <NavLink exact to="/login" activeClassName="active" 

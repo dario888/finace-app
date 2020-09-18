@@ -1,6 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
+
+import Alert from '../components/Alert'
+
 import {AuthContext} from '../context/auth/authState'
+import {AlertContext} from '../context/alert/alertState'
 
 
 
@@ -8,13 +12,14 @@ import {AuthContext} from '../context/auth/authState'
 
 const Salary = () => {
 
-    const { token } = useContext(AuthContext)
-    const history = useHistory()
+    const { token } = useContext(AuthContext);
+    const { setAlert } = useContext(AlertContext);
+    const history = useHistory();
 
     const [inputGross, setInputGross] = useState(0)
+    const [calcNetAmount, setCalcNetAmount] = useState(0)
     const [grossSalary, setGrossSalary] = useState(0)
     const [netSalary, setNetSalary] = useState(0)
-    const [calcNetAmount, setCalcNetAmount] = useState(0)
 
     //---------------------------------- CALCULATONS ------------------------------------------------
     const grossMin = 19159;
@@ -39,13 +44,24 @@ const Salary = () => {
     const displayGross = inputGross > grossMin ? inputGross : 0
     // console.log(displayGross) 
     //---------------------------------------------------------------------------------------------
+    useEffect(() => {
+        if(inputGross > 95000000 ){
+            setAlert('Max Groos value 95,000,000', 'danger')
+            clickResetHendler();
+        }
+        if(calcNetAmount > 61500000){
+            setAlert('Max Net value 61,500,000', 'danger')
+            clickResetHendler();
+        }
+
+    },[inputGross, calcNetAmount] )
     //Auth redirect for login if the user is not login 
     useEffect(()=>{
        if(!token){
         history.replace('/login')
        }
         // eslint-disable-next-line
-    },[token])
+    },[])
     
     //-------------------------------------------------------------------------------------------
     //Calculating salary from Gross to Net
@@ -85,19 +101,22 @@ const Salary = () => {
 
     return (
         <div className="containerSalary">
+            <Alert />
             <div className="inputSalary">
                 <div>
                     <label>Gross Salary</label>
                     <input type="number" 
                     value={ inputGross ? inputGross.toString() : grossSalary.toString()  } 
-                    onChange={changeGrossHendler}/>
+                    onChange={changeGrossHendler} />
                     {
                         grossSalary < grossMin && <p>Please insert amount bigger or equal to 19160</p>
                     }
                 </div>
                 <div>
                     <label>Net Salary</label>
-                    <input type="number" value={calcNetAmount ? calcNetAmount.toString() : netSalary.toString()} onChange={changeNetHendler}/>
+                    <input type="number" 
+                    value={calcNetAmount ? calcNetAmount.toString() : netSalary.toString()}
+                    onChange={changeNetHendler} />
                     {
                         netSalary < netMin ? <p>Please insert amount bigger or equal to 13238</p> 
                         :  null 
@@ -106,7 +125,7 @@ const Salary = () => {
                 
             </div>
             <div className="divBtnReset">
-                <button className="salaryReset btnHoverGreen" onClick={clickResetHendler}>
+                <button type="button" className="salaryReset btnHoverGreen" onClick={clickResetHendler}>
                     Reset Salary
                 </button>
             </div>

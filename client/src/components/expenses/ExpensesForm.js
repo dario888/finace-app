@@ -93,7 +93,7 @@ const ExpensesForm = () => {
             <div className="formGroup">
                 <input type="number" value={amount.toString()} onChange={onChangeExpense} 
                 name="amount" className="inputForms" 
-                id="amtInp" placeholder="Enter Amount" max={500000} required/>
+                id="amtInp" placeholder="Enter Amount"  max={500000} required/>
             </div>
             
             <button type="button" onClick={clearAll} className="btnForm " id="expenseCancel">

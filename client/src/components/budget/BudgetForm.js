@@ -88,7 +88,7 @@ const BudgetForm = () => {
                     className="inputForms" id="bgtInp" max={500000}
                     required/>
                 </div>
-                <button type="submit" onClick={clearAll} className="btnForm" id="budgetReset">
+                <button type="button" onClick={clearAll} className="btnForm" id="budgetReset">
                     Cancel
                 </button>
                 <button type="submit" className="btnForm" id="budgetSubmit">
