@@ -35,6 +35,11 @@ const LogIn = () => {
             setUser({...user, password: ''})
             clearErrors();
         }
+        if(error === 'Please include valid email'){
+            setAlert(error, 'danger')
+            setUser({...user, password: ''})
+            clearErrors();
+        }
 
 
         //eslint-disable-next-line
@@ -69,7 +74,7 @@ const LogIn = () => {
             <form onSubmit={submitHendler}>             
                 <div className="modalContent">
                     <label htmlFor="email">Email</label>
-                    <input type="text" name='email' value={email} onChange={changeHendler} required/>
+                    <input type="email" name='email' value={email} onChange={changeHendler} required/>
                 </div>
                 <div className="modalContent">
                     <label htmlFor="password">Password</label>

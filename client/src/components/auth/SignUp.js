@@ -31,6 +31,13 @@ const SignUp = () => {
 
         if(error === 'User already exists'){
             setAlert(error, 'danger')
+            setUser({name: '', email: '', password: '', passwordConfirm: ''})
+            clearErrors();
+        }
+
+        if(error === 'Please include valid email'){
+            setAlert(error, 'danger')
+            setUser({...user, email: ''})
             clearErrors();
         }
 
@@ -78,7 +85,7 @@ const SignUp = () => {
                 </div>
                 <div className="modalContent">
                     <label htmlFor="email">Email</label>
-                    <input type="text" name='email' value={email} onChange={changeHendler} required/>
+                    <input type="email" name='email' value={email} onChange={changeHendler} required/>
                 </div>
                 <div className="modalContent">
                     <label htmlFor="password">Password</label>

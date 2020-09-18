@@ -53,7 +53,7 @@ const Salary = () => {
             setAlert('Max Net value 61,500,000', 'danger')
             clickResetHendler();
         }
-
+        // eslint-disable-next-line
     },[inputGross, calcNetAmount] )
     //Auth redirect for login if the user is not login 
     useEffect(()=>{

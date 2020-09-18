@@ -52,7 +52,8 @@ const AuthState = (props) => {
             loadUser();
 
         } catch (err) {
-            dispatch({type: SIGNUP_FAIL, payload: err.response.data.msg});
+            let errorsServer = err.response.data.msg || err.response.data.errors[0].msg
+            dispatch({type: SIGNUP_FAIL, payload: err.response.data.msg || errorsServer});
             
         }
     }
@@ -71,8 +72,9 @@ const AuthState = (props) => {
             loadUser();
 
         } catch (err) {
-            dispatch({type: LOGIN_FAIL, payload: err.response.data.msg});
-            
+            let errorsServer = err.response.data.msg || err.response.data.errors[0].msg
+            dispatch({type: LOGIN_FAIL, payload:  errorsServer });
+            // console.log(errors);
         }
     }
    

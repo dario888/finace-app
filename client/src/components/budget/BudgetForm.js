@@ -24,12 +24,17 @@ const BudgetForm = () => {
     useEffect(() => {
         //current=expense
         if(currentBudget){
-            setBudget(currentBudget);
-            
+            // if(currentBudget.amount > 0){
+                setBudget(currentBudget);
+            // }else{
+            //     clearCurrentBudget();
+                
+            // }
+
         } else {
             setBudget({ amount: '', month: ''})
         }
-        
+        // eslint-disable-next-line
     }, [currentBudget]);
 
 
@@ -47,12 +52,22 @@ const BudgetForm = () => {
     const onSubmitBudget = e => {
         e.preventDefault();
         if(currentBudget) {
+            if(budget.amount < 1){
+                clearCurrentBudget(); 
+                return setAlert('Please enter amount bigger than 0','danger')
+            }
+            
             updateBudget(budget);
             clearCurrentBudget();     
             
         } else {
             if(month && !arrMonths.includes(month)){
-               return setAlert('Please enter correct month','danger')
+               return setAlert('Please enter correct Month','danger')
+            }
+
+            if(budget.amount < 1){
+                clearCurrentBudget(); 
+                return setAlert('Please enter Amount bigger than 0','danger')
             }
             
             addBudget(budget);
