@@ -51,7 +51,6 @@ const ExpensesForm = () => {
             }
 
             if(expense.amount < 1){
-                clearCurrent(); 
                 return setAlert('Please enter amount bigger than 0','danger')
             }
 
@@ -64,7 +63,6 @@ const ExpensesForm = () => {
             }
 
             if(expense.amount < 1){
-                clearCurrent(); 
                 return setAlert('Please enter Amount bigger than 0','danger')
             }
 

@@ -24,13 +24,8 @@ const BudgetForm = () => {
     useEffect(() => {
         //current=expense
         if(currentBudget){
-            // if(currentBudget.amount > 0){
-                setBudget(currentBudget);
-            // }else{
-            //     clearCurrentBudget();
-                
-            // }
-
+            setBudget(currentBudget);
+           
         } else {
             setBudget({ amount: '', month: ''})
         }
@@ -55,9 +50,8 @@ const BudgetForm = () => {
             if(month && !arrMonths.includes(month)){
                 return setAlert('Please enter correct Month','danger')
             }
-            
+
             if(budget.amount < 1){
-                clearCurrentBudget(); 
                 return setAlert('Please enter amount bigger than 0','danger')
             }
 
@@ -69,8 +63,7 @@ const BudgetForm = () => {
                return setAlert('Please enter correct Month','danger')
             }
 
-            if(budget.amount < 1){
-                clearCurrentBudget(); 
+            if(budget.amount < 1){ 
                 return setAlert('Please enter Amount bigger than 0','danger')
             }
             
