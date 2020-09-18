@@ -45,7 +45,7 @@ router.post('/',  [
 
         //comapre passwords from SignUp and DB
         const isMatch = await bcrypt.compare(password, user.password)
-        if(!isMatch)return res.status(400).json({msg: 'Invalid Password'})
+        if(!isMatch)return res.status(400).json({msg: 'Invalid Password, Please enter valid Password'})
 
         //Singning the token -> payload, secret, expires, return token
         const payload = {

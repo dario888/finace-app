@@ -16,7 +16,8 @@ const LogIn = () => {
 
     
     const [user, setUser] = useState({ email: '', password: ''})
-
+    let {email, password} = user;
+    
     const history = useHistory();
 
     useEffect(() => {
@@ -29,17 +30,16 @@ const LogIn = () => {
             clearErrors();
         }
 
-        if(error === 'Invalid Password'){
+        if(error === 'Invalid Password, Please enter valid Password'){
             setAlert(error, 'danger')
-            setUser({password: ''})
+            setUser({...user, password: ''})
             clearErrors();
         }
 
 
         //eslint-disable-next-line
-    }, [error,isAuthenticated, ])
+    }, [error,isAuthenticated ])
     
-    let {email, password} = user;
 
     //Set the user
     const changeHendler = (e) => setUser({...user, [e.target.name]: e.target.value });

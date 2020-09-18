@@ -47,7 +47,7 @@ const SignUp = () => {
   
         if(password !== passwordConfirm) {
             setUser({...user, password: '', passwordConfirm: ''})
-            return setAlert('Password do not match', 'danger');
+            return setAlert('The Password\'s do not match', 'danger');
         } 
         
         register({name, email, password});//geting token from server
