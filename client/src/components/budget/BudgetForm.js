@@ -52,11 +52,15 @@ const BudgetForm = () => {
     const onSubmitBudget = e => {
         e.preventDefault();
         if(currentBudget) {
+            if(month && !arrMonths.includes(month)){
+                return setAlert('Please enter correct Month','danger')
+            }
+            
             if(budget.amount < 1){
                 clearCurrentBudget(); 
                 return setAlert('Please enter amount bigger than 0','danger')
             }
-            
+
             updateBudget(budget);
             clearCurrentBudget();     
             

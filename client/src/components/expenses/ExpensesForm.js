@@ -46,17 +46,21 @@ const ExpensesForm = () => {
     const onSubmitExpense = e => {
         e.preventDefault();
         if(current) {
+            if(month && !arrMonths.includes(month)){
+                return setAlert('Please enter correct Month','danger')
+            }
+
             if(expense.amount < 1){
                 clearCurrent(); 
                 return setAlert('Please enter amount bigger than 0','danger')
             }
-            
+
             updateExpense(expense);
             clearCurrent();
    
         } else {
             if(month && !arrMonths.includes(month)){
-                return setAlert('Please enter correct month','danger')
+                return setAlert('Please enter correct Month','danger')
             }
 
             if(expense.amount < 1){
