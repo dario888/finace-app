@@ -37,13 +37,7 @@ const Bilance = () => {
         
         //eslint-disable-next-line
     },[]);
-    // useEffect(() => {
-    //     if(!selectedMonth){
-    //         history.replace('/expenses')
-    //     }
-        
-    //     //eslint-disable-next-line
-    // },[selectedMonth]);
+
  
 
     useEffect(() => {
