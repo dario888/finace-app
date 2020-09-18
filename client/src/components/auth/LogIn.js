@@ -17,7 +17,7 @@ const LogIn = () => {
     
     const [user, setUser] = useState({ email: '', password: ''})
     let {email, password} = user;
-    
+
     const history = useHistory();
 
     useEffect(() => {
@@ -73,7 +73,8 @@ const LogIn = () => {
                 </div>
                 <div className="modalContent">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name='password' value={password} onChange={changeHendler} required/>
+                    <input type="password" name='password' value={password} maxLength={12} minLength={6}
+                    onChange={changeHendler} required/>
                 </div>
                 <div className="modalActions">
                     <input type="button" onClick={toggleHendler} value="Cancel" className="btnForm btnHover" id="cancel"/>
