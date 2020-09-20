@@ -49,7 +49,7 @@ router.post('/',
         }
 
         jwt.sign(payload, process.env.JWT, {
-            expiresIn: 36000
+            expiresIn: 3600
 
         }, (err, token) => {
             if(err)throw err;
