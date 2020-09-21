@@ -27,6 +27,8 @@ app.use('/api/auth', authRoutes)
 app.use('/api/expenses', expensesRoutes)
 app.use('/api/budget', budgetRoutes)
 
+
+
 //Serve static assets in prodaction
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
