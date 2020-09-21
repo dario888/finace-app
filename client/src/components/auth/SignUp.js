@@ -52,6 +52,11 @@ const SignUp = () => {
     const submitHendler = (e) => {
         e.preventDefault();
   
+        if(/_|\W|\d/gi.test(name) || /[ ]{2,}/gi.test(name) ) {
+            setUser({...user, name:''})
+            return setAlert('Invalid Name! Please enter valid name', 'danger');
+        } 
+  
         if(password !== passwordConfirm) {
             setUser({...user, password: '', passwordConfirm: ''})
             return setAlert('The Password\'s do not match', 'danger');
