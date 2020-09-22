@@ -51,15 +51,16 @@ const SignUp = () => {
     
     const submitHendler = (e) => {
         e.preventDefault();
-  
-        if(/_|\W|\d/gi.test(name) || /[ ]{2,}/gi.test(name) ) {
-            setUser({...user, name:''})
+        // 
+        if(/[^a-zA-Z\s{1}]/gi.test(name) || /\s{2,}/gi.test(name) ) {
+            setUser({...user, name:''});
             return setAlert('Invalid Name! Please enter valid name', 'danger');
+            
         } 
   
         if(password !== passwordConfirm) {
             setUser({...user, password: '', passwordConfirm: ''})
-            return setAlert('The Password\'s do not match', 'danger');
+            return setAlert('The Passwords do not match', 'danger');
         } 
         
         register({name, email, password});//geting token from server

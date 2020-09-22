@@ -50,7 +50,7 @@ const ExpensesForm = () => {
                 return setAlert('Please enter correct Month','danger')
             }
 
-            if(/_|\W|\d/gi.test(expensesName) || /[ ]{2,}/gi.test(expensesName) ) {
+            if(/[^a-zA-Z\d\s{1}]/gi.test(expensesName) || /\s{2,}/gi.test(expensesName) ) {
                 setExpense({...expense, expensesName:''})
                 return setAlert('Invalid Name! Please enter valid name', 'danger');
             }
@@ -67,7 +67,7 @@ const ExpensesForm = () => {
                 return setAlert('Please enter correct Month','danger')
             }
 
-            if(/_|\W/gi.test(expensesName) || /[ ]{2,}/gi.test(expensesName) ) {
+            if(/[^a-zA-Z\d\s{1}]/gi.test(expensesName) || /\s{2,}/gi.test(expensesName) ) {
                 setExpense({...expense, expensesName:''})
                 return setAlert('Invalid Expense! Please enter valid name', 'danger');
             }

@@ -27,6 +27,7 @@ const LogIn = () => {
 
         if(error === 'Invalid Credentials'){
             setAlert(error, 'danger')
+            setUser({...user, email: '', password: ''})
             clearErrors();
         }
 
@@ -37,7 +38,7 @@ const LogIn = () => {
         }
         if(error === 'Please include valid email'){
             setAlert(error, 'danger')
-            setUser({...user, password: ''})
+            setUser({...user, email: ''})
             clearErrors();
         }
 
